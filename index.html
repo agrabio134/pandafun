@@ -210,8 +210,8 @@
       background: var(--panda-white);
       border: 2px solid var(--bamboo-green);
       border-radius: 50%;
-      width: clamp(28px, 8vw, 32px);
-      height: clamp(28px, 8vw, 32px);
+      width: clamp(38px, 8vw, 32px);
+      height: clamp(38px, 8vw, 32px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -295,13 +295,13 @@
       }
 
       .nav-icon {
-        font-size: clamp(0.875rem, 2vw, 1rem);
-        width: clamp(32px, 8vw, 36px);
-        height: clamp(32px, 8vw, 36px);
+        font-size: clamp(1rem, 2vw, 1rem);
+        width: clamp(42px, 10vw, 46px);
+        height: clamp(42px, 10vw, 46px);
       }
 
       .social-icon {
-        font-size: clamp(0.875rem, 2vw, 1rem);
+        font-size: clamp(1.875rem, 2vw, 1rem);
         width: clamp(32px, 8vw, 36px);
         height: clamp(32px, 8vw, 36px);
       }
@@ -347,14 +347,14 @@
         left: auto;
         right: 1rem;
         transform: none;
-        padding: clamp(0.75rem, 2vw, 1rem);
+        padding: clamp(1.75rem, 2vw, 1rem);
         gap: clamp(0.75rem, 2vw, 1rem);
       }
 
       .nav-icon {
-        font-size: clamp(1.25rem, 3vw, 1.5rem);
-        width: clamp(40px, 10vw, 48px);
-        height: clamp(40px, 10vw, 48px);
+        font-size: clamp(2.25rem, 3vw, 2.5rem);
+        width: clamp(47px, 12vw, 48px);
+        height: clamp(47px, 12vw, 48px);
       }
 
       .social-icon {
@@ -382,15 +382,15 @@
   <!-- Navigation -->
   <nav class="nav-container">
     <a href="#home" class="nav-icon"><i class="fa-solid fa-home"></i></a>
-    <a href="#vibe" class="nav-icon"><i class="fa-solid fa-leaf"></i></a>
     <a href="#grab" class="nav-icon"><i class="fa-solid fa-coins"></i></a>
+    <a href="#vibe" class="nav-icon"><i class="fa-solid fa-leaf"></i></a>
     <a href="#crew" class="nav-icon"><i class="fa-solid fa-users"></i></a>
   </nav>
 
   <!-- Hero Section -->
   <section id="home" class="relative flex items-center justify-center text-center scroll-parallax">
     <div class="panda-card bg-opacity-95 bg-[var(--panda-white)] rounded-2xl  max-w-[90%] sm:max-w-3xl">
-      <h2 class="text-8xl font-bold text-[var(--panda-black)] mb-4 flex items-center justify-center flex-wrap">
+      <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-4 flex items-center justify-center flex-wrap">
         PandaFun <span class="panda-emoji ml-2 text-4xl panda-bounce">🐼</span>
       </h2>
       <p class="text-4xl text-[var(--panda-black)] mb-6">The ultimate meme coin with epic community vibes!</p>
@@ -420,7 +420,7 @@
           <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-exchange-alt fa-icon mr-2 panda-pulse"></i> Select tokens to swap.</li>
           <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-check-circle fa-icon mr-2 panda-pulse"></i> Confirm and snag your PandaFun coins!</li>
         </ol>
-<div id="integrated-terminal" class="mt-4" style="width: 100%; max-width: 600px; height: 508px; background-color: #1a1a1a;"></div>      </div>
+<div id="integrated-terminal" class="mt-4" style="width: 100%; max-width: 600px; height: 558px; background-color: #1a1a1a;"></div>      </div>
     </div>
   </section>
 
@@ -583,44 +583,45 @@
     }
 
     // Initialize Jupiter Terminal
-    function initJupiterTerminal() {
-      const terminalContainer = document.getElementById('integrated-terminal');
-      if (!terminalContainer) {
-        pandaLog('Jupiter Terminal container not found!');
-        return;
-      }
+function initJupiterTerminal() {
+  const terminalContainer = document.getElementById('integrated-terminal');
+  if (!terminalContainer) {
+    pandaLog('Jupiter Terminal container not found!');
+    return;
+  }
 
-      try {
-        window.Jupiter.init({
-          displayMode: "integrated",
-          integratedTargetId: "integrated-terminal",
-          endpoint: "https://api.mainnet-beta.solana.com",
-          strictTokenList: false, // Allow unverified tokens (e.g., PandaFun)
-          defaultExplorer: "Solscan",
-          formProps: {
-            initialInputMint: "So11111111111111111111111111111111111111112", // SOL
-            initialOutputMint: "YOUR_PANDAFUN_MINT_ADDRESS", // Replace with actual PandaFun mint address
-            initialAmount: "1000000000", // 1 SOL in lamports
-            fixedOutputMint: true, // Lock output to PandaFun token
-          },
-          theme: {
-            colors: {
-              primary: "var(--bamboo-green)", // #2dd4bf
-              secondary: "var(--coral-pink)", // #f472b6
-              background: "var(--panda-white)", // #ffffff
-              text: "var(--panda-black)", // #1a1a1a
-              accent: "var(--glow-soft)", // #a5f3fc
-            },
-            fontFamily: "'Poppins', sans-serif",
-          },
-        });
-        pandaLog('Jupiter Terminal initialized successfully!');
-        pandaBounceEffect(terminalContainer);
-      } catch (err) {
-        pandaLog('Failed to initialize Jupiter Terminal: ' + err);
-        alert('Failed to load swap interface: ' + err.message);
-      }
-    }
+  try {
+    window.Jupiter.init({
+      displayMode: "integrated",
+      integratedTargetId: "integrated-terminal",
+      endpoint: "https://api.mainnet-beta.solana.com",
+      strictTokenList: false, // Allow unverified tokens (e.g., PandaFun)
+      defaultExplorer: "Solscan",
+      formProps: {
+        initialInputMint: "So11111111111111111111111111111111111111112", // SOL
+        initialOutputMint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", // Replace with actual PandaFun mint address
+        initialAmount: "1000000000", // 1 SOL in lamports
+        fixedInputMint: false, // Allow users to change the input token
+        fixedOutputMint: false, // Allow users to change the output token
+      },
+      theme: {
+        colors: {
+          primary: "var(--bamboo-green)", // #2dd4bf
+          secondary: "var(--coral-pink)", // #f472b6
+          background: "var(--panda-white)", // #ffffff
+          text: "var(--panda-black)", // #1a1a1a
+          accent: "var(--glow-soft)", // #a5f3fc
+        },
+        fontFamily: "'Poppins', sans-serif",
+      },
+    });
+    pandaLog('Jupiter Terminal initialized successfully!');
+    pandaBounceEffect(terminalContainer);
+  } catch (err) {
+    pandaLog('Failed to initialize Jupiter Terminal: ' + err);
+    alert('Failed to load swap interface: ' + err.message);
+  }
+}
 
     // Initialize Effectss
     function initPandaFun() {
