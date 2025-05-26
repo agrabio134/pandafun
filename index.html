@@ -181,7 +181,7 @@
       top: 0.5rem;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 50;
+      z-index: 100;
     }
 
     .ca-text {
@@ -332,10 +332,29 @@
         padding: clamp(1.5rem, 3vw, 2rem);
       }
 
+      /* Make Grab section panda-card wider */
+      #grab .panda-card {
+        max-width: 1024px; /* Equivalent to Tailwind's max-w-4xl */
+      }
+
+      /* Adjust Jupiter Terminal width to match */
+      #grab #integrated-terminal {
+        max-width: 1024px; /* Match the panda-card width */
+      }
+
+      /* Move nav to top-right on desktop */
+      .nav-container {
+        left: auto;
+        right: 1rem;
+        transform: none;
+        padding: clamp(0.75rem, 2vw, 1rem);
+        gap: clamp(0.75rem, 2vw, 1rem);
+      }
+
       .nav-icon {
-        font-size: clamp(1rem, 2.5vw, 1.25rem);
-        width: clamp(36px, 8vw, 44px);
-        height: clamp(36px, 8vw, 44px);
+        font-size: clamp(1.25rem, 3vw, 1.5rem);
+        width: clamp(40px, 10vw, 48px);
+        height: clamp(40px, 10vw, 48px);
       }
 
       .social-icon {
@@ -370,7 +389,7 @@
 
   <!-- Hero Section -->
   <section id="home" class="relative flex items-center justify-center text-center scroll-parallax">
-    <div class="panda-card bg-opacity-95 bg-[var(--panda-white)] rounded-2xl fade-in max-w-[90%] sm:max-w-3xl">
+    <div class="panda-card bg-opacity-95 bg-[var(--panda-white)] rounded-2xl  max-w-[90%] sm:max-w-3xl">
       <h2 class="text-8xl font-bold text-[var(--panda-black)] mb-4 flex items-center justify-center flex-wrap">
         PandaFun <span class="panda-emoji ml-2 text-4xl panda-bounce">🐼</span>
       </h2>
@@ -388,7 +407,7 @@
     <div class="absolute top-4 right-4 panda-emoji text-3xl panda-pulse">🐾</div>
   </section>
 
-    <!-- Grab Section -->
+  <!-- Grab Section -->
   <section id="grab" class="py-8 sm:py-16 bg-[var(--bamboo-green)] text-[var(--panda-white)]">
     <div class="container mx-auto text-center">
       <h2 class="text-6xl font-bold mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
@@ -401,8 +420,7 @@
           <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-exchange-alt fa-icon mr-2 panda-pulse"></i> Select tokens to swap.</li>
           <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-check-circle fa-icon mr-2 panda-pulse"></i> Confirm and snag your PandaFun coins!</li>
         </ol>
-        <div id="integrated-terminal" class="mt-4" style="width: 100%; max-width: 800px; height: 568px; background-color: #1a1a1a;"></div>
-      </div>
+<div id="integrated-terminal" class="mt-4" style="width: 100%; max-width: 600px; height: 508px; background-color: #1a1a1a;"></div>      </div>
     </div>
   </section>
 
@@ -431,8 +449,6 @@
       </div>
     </div>
   </section>
-
-
 
   <!-- Crew Section -->
   <section id="crew" class="py-8 sm:py-16 bg-[var(--panda-white)]">
@@ -606,7 +622,7 @@
       }
     }
 
-    // Initialize Effects
+    // Initialize Effectss
     function initPandaFun() {
       initSmoothScroll();
       initHoverEffects();
