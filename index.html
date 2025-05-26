@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PandaFun - Meme Coin Community</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ffffff'/%3E%3Ccircle cx='38' cy='38' r='12' fill='%23222222'/%3E%3Ccircle cx='62' cy='38' r='12' fill='%23222222'/%3E%3Cpath d='M50 65 Q45 70 50 75 Q55 70 50 65' fill='%23222222'/%3E%3Cpath d='M35 20 Q50 10 65 20' fill='none' stroke='%23222222' stroke-width='6'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ffffff'/%3E%3Ccircle cx='38' cy='38' r='12' fill='%23222222'/%3E%3Ccircle cx='62' cy='38' r='12' fill='%23222222'/%3E%3Cpath d='M50 65 Q45 70 50 75 Q55 70 50 65' fill='%23222222'/%3E%3Cpath d='M35 20 Q50 10 65 20' fill='none' stroke='%23222222' stroke-width='6'/%3E%3C/svg%3E">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -73,8 +75,15 @@
     }
 
     @keyframes panda-bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
     }
 
     .panda-spin {
@@ -82,7 +91,9 @@
     }
 
     @keyframes panda-spin {
-      100% { transform: rotate(360deg); }
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     .panda-pulse {
@@ -90,16 +101,26 @@
     }
 
     @keyframes panda-pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
 
-    .fa-icon, .panda-emoji {
+    .fa-icon,
+    .panda-emoji {
       transition: transform 0.3s ease, color 0.3s ease;
     }
 
-    .fa-icon:hover, .panda-emoji:hover {
+    .fa-icon:hover,
+    .panda-emoji:hover {
       transform: scale(1.3);
       color: var(--coral-pink);
     }
@@ -172,10 +193,10 @@
       gap: clamp(0.25rem, 1.5vw, 0.5rem);
       background: rgba(255, 255, 255, 0.95);
       padding: clamp(0.25rem, 1.5vw, 0.5rem);
-      border-radius: 50px;
+      /* Top-left and bottom-left corners only */
       border: 1px solid var(--bamboo-green);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      max-width: 95%;
+      max-width: 100%;
       flex-wrap: nowrap;
       position: fixed;
       top: 0.5rem;
@@ -183,6 +204,7 @@
       transform: translateX(-50%);
       z-index: 100;
     }
+
 
     .ca-text {
       cursor: pointer;
@@ -248,15 +270,33 @@
     }
 
     /* Mobile-First Typography */
-    h1, h2, h3, p, li {
+    h1,
+    h2,
+    h3,
+    p,
+    li {
       font-size: clamp(0.875rem, 3.5vw, 1rem);
     }
 
-    .text-8xl { font-size: clamp(1.5rem, 6vw, 2rem); }
-    .text-6xl { font-size: clamp(1.25rem, 5vw, 1.75rem); }
-    .text-4xl { font-size: clamp(1rem, 3.5vw, 1.25rem); }
-    .text-3xl { font-size: clamp(0.875rem, 3vw, 1rem); }
-    .text-2xl { font-size: clamp(0.75rem, 2.5vw, 0.875rem); }
+    .text-8xl {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .text-6xl {
+      font-size: clamp(1.25rem, 5vw, 1.75rem);
+    }
+
+    .text-4xl {
+      font-size: clamp(1rem, 3.5vw, 1.25rem);
+    }
+
+    .text-3xl {
+      font-size: clamp(0.875rem, 3vw, 1rem);
+    }
+
+    .text-2xl {
+      font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+    }
 
     .container {
       padding-left: clamp(0.5rem, 3vw, 1rem);
@@ -275,11 +315,25 @@
 
     /* Tablet: 640px and up */
     @media (min-width: 640px) {
-      .text-8xl { font-size: clamp(2rem, 8vw, 2.5rem); }
-      .text-6xl { font-size: clamp(1.5rem, 6vw, 2rem); }
-      .text-4xl { font-size: clamp(1.25rem, 4vw, 1.5rem); }
-      .text-3xl { font-size: clamp(1rem, 3.5vw, 1.25rem); }
-      .text-2xl { font-size: clamp(0.875rem, 3vw, 1rem); }
+      .text-8xl {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+      }
+
+      .text-6xl {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+      }
+
+      .text-4xl {
+        font-size: clamp(1.25rem, 4vw, 1.5rem);
+      }
+
+      .text-3xl {
+        font-size: clamp(1rem, 3.5vw, 1.25rem);
+      }
+
+      .text-2xl {
+        font-size: clamp(0.875rem, 3vw, 1rem);
+      }
 
       #home {
         background-image: url('https://source.unsplash.com/random/1280x720/?panda,fun');
@@ -292,6 +346,8 @@
       .nav-container {
         gap: clamp(0.5rem, 1.5vw, 0.75rem);
         padding: clamp(0.5rem, 1.5vw, 0.75rem);
+        border-radius: 50px;
+
       }
 
       .nav-icon {
@@ -309,11 +365,25 @@
 
     /* Desktop: 1024px and up */
     @media (min-width: 1024px) {
-      .text-8xl { font-size: clamp(2.5rem, 10vw, 3.5rem); }
-      .text-6xl { font-size: clamp(2rem, 8vw, 2.5rem); }
-      .text-4xl { font-size: clamp(1.5rem, 5vw, 2rem); }
-      .text-3xl { font-size: clamp(1.25rem, 4vw, 1.5rem); }
-      .text-2xl { font-size: clamp(1rem, 3.5vw, 1.25rem); }
+      .text-8xl {
+        font-size: clamp(2.5rem, 10vw, 3.5rem);
+      }
+
+      .text-6xl {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+      }
+
+      .text-4xl {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+      }
+
+      .text-3xl {
+        font-size: clamp(1.25rem, 4vw, 1.5rem);
+      }
+
+      .text-2xl {
+        font-size: clamp(1rem, 3.5vw, 1.25rem);
+      }
 
       #home {
         background-image: url('https://source.unsplash.com/random/1920x1080/?panda,fun');
@@ -334,18 +404,22 @@
 
       /* Make Grab section panda-card wider */
       #grab .panda-card {
-        max-width: 1024px; /* Equivalent to Tailwind's max-w-4xl */
+        max-width: 1024px;
+        /* Equivalent to Tailwind's max-w-4xl */
       }
 
       /* Adjust Jupiter Terminal width to match */
       #grab #integrated-terminal {
-        max-width: 1024px; /* Match the panda-card width */
+        max-width: 1024px;
+        /* Match the panda-card width */
       }
 
       /* Move nav to top-right on desktop */
       .nav-container {
+      border-radius: 50px 0 0 50px;
+
         left: auto;
-        right: 1rem;
+        right: 0;
         transform: none;
         padding: clamp(1.75rem, 2vw, 1rem);
         gap: clamp(0.75rem, 2vw, 1rem);
@@ -366,11 +440,25 @@
 
     /* Large Desktop: 1280px and up */
     @media (min-width: 1280px) {
-      .text-8xl { font-size: clamp(3rem, 12vw, 4rem); }
-      .text-6xl { font-size: clamp(2.5rem, 10vw, 3rem); }
-      .text-4xl { font-size: clamp(1.75rem, 6vw, 2.25rem); }
-      .text-3xl { font-size: clamp(1.5rem, 5vw, 1.75rem); }
-      .text-2xl { font-size: clamp(1.25rem, 4vw, 1.5rem); }
+      .text-8xl {
+        font-size: clamp(3rem, 12vw, 4rem);
+      }
+
+      .text-6xl {
+        font-size: clamp(2.5rem, 10vw, 3rem);
+      }
+
+      .text-4xl {
+        font-size: clamp(1.75rem, 6vw, 2.25rem);
+      }
+
+      .text-3xl {
+        font-size: clamp(1.5rem, 5vw, 1.75rem);
+      }
+
+      .text-2xl {
+        font-size: clamp(1.25rem, 4vw, 1.5rem);
+      }
 
       .panda-card {
         padding: clamp(2rem, 3vw, 2.5rem);
@@ -378,6 +466,7 @@
     }
   </style>
 </head>
+
 <body class="min-h-screen flex flex-col">
   <!-- Navigation -->
   <nav class="nav-container">
@@ -413,14 +502,20 @@
       <h2 class="text-6xl font-bold mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
         <i class="fa-solid fa-coins fa-icon mr-2 text-3xl panda-spin"></i> Snag PandaFun
       </h2>
-      <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto fade-in">
-        <p class="text-4xl mb-4" style="color: #1a1a1a;">Grab coins in 3 panda-tastic steps! <span class="panda-emoji text-3xl">🐼</span></p>
+      <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto ">
+        <p class="text-4xl mb-4" style="color: #1a1a1a;">Grab coins in 3 panda-tastic steps! <span
+            class="panda-emoji text-3xl">🐼</span></p>
         <ol class="list-decimal list-inside text-left text-2xl">
-          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-wallet fa-icon mr-2 panda-pulse"></i> Connect your Solana wallet.</li>
-          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-exchange-alt fa-icon mr-2 panda-pulse"></i> Select tokens to swap.</li>
-          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-check-circle fa-icon mr-2 panda-pulse"></i> Confirm and snag your PandaFun coins!</li>
+          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-wallet fa-icon mr-2 panda-pulse"></i> Connect
+            your Solana wallet.</li>
+          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-exchange-alt fa-icon mr-2 panda-pulse"></i>
+            Select tokens to swap.</li>
+          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-check-circle fa-icon mr-2 panda-pulse"></i>
+            Confirm and snag your PandaFun coins!</li>
         </ol>
-<div id="integrated-terminal" class="mt-4" style="width: 100%; max-width: 600px; height: 558px; background-color: #1a1a1a;"></div>      </div>
+        <div id="integrated-terminal" class="mt-4"
+          style="width: 100%; max-width: 600px; height: 558px; background-color: #1a1a1a;"></div>
+      </div>
     </div>
   </section>
 
@@ -457,7 +552,8 @@
         <i class="fa-solid fa-users fa-icon mr-2 text-3xl panda-spin"></i> PandaFun Squad
       </h2>
       <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto fade-in">
-        <p class="text-4xl text-[var(--panda-black)] mb-4">Join the wildest panda crew! <span class="panda-emoji text-3xl">🐼</span></p>
+        <p class="text-4xl text-[var(--panda-black)] mb-4">Join the wildest panda crew! <span
+            class="panda-emoji text-3xl">🐼</span></p>
         <div class="flex justify-center gap-4 flex-wrap">
           <a href="#" class="text-3xl fa-icon panda-bounce"><i class="fa-brands fa-x-twitter"></i></a>
           <a href="#" class="text-3xl fa-icon panda-bounce"><i class="fa-brands fa-telegram"></i></a>
@@ -469,7 +565,8 @@
   <!-- Footer -->
   <footer class="bg-[var(--panda-white)] py-6 text-center panda-card mt-auto">
     <div class="container mx-auto">
-      <p class="text-3xl text-[var(--panda-black)]"><span class="panda-emoji mr-2 text-3xl panda-bounce">🐼</span> © 2025 PandaFun. Built for the Panda Community!</p>
+      <p class="text-3xl text-[var(--panda-black)]"><span class="panda-emoji mr-2 text-3xl panda-bounce">🐼</span> ©
+        2025 PandaFun. Built for the Panda Community!</p>
     </div>
   </footer>
 
@@ -583,45 +680,45 @@
     }
 
     // Initialize Jupiter Terminal
-function initJupiterTerminal() {
-  const terminalContainer = document.getElementById('integrated-terminal');
-  if (!terminalContainer) {
-    pandaLog('Jupiter Terminal container not found!');
-    return;
-  }
+    function initJupiterTerminal() {
+      const terminalContainer = document.getElementById('integrated-terminal');
+      if (!terminalContainer) {
+        pandaLog('Jupiter Terminal container not found!');
+        return;
+      }
 
-  try {
-    window.Jupiter.init({
-      displayMode: "integrated",
-      integratedTargetId: "integrated-terminal",
-      endpoint: "https://api.mainnet-beta.solana.com",
-      strictTokenList: false, // Allow unverified tokens (e.g., PandaFun)
-      defaultExplorer: "Solscan",
-      formProps: {
-        initialInputMint: "So11111111111111111111111111111111111111112", // SOL
-        initialOutputMint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", // Replace with actual PandaFun mint address
-        initialAmount: "1000000000", // 1 SOL in lamports
-        fixedInputMint: false, // Allow users to change the input token
-        fixedOutputMint: false, // Allow users to change the output token
-      },
-      theme: {
-        colors: {
-          primary: "var(--bamboo-green)", // #2dd4bf
-          secondary: "var(--coral-pink)", // #f472b6
-          background: "var(--panda-white)", // #ffffff
-          text: "var(--panda-black)", // #1a1a1a
-          accent: "var(--glow-soft)", // #a5f3fc
-        },
-        fontFamily: "'Poppins', sans-serif",
-      },
-    });
-    pandaLog('Jupiter Terminal initialized successfully!');
-    pandaBounceEffect(terminalContainer);
-  } catch (err) {
-    pandaLog('Failed to initialize Jupiter Terminal: ' + err);
-    alert('Failed to load swap interface: ' + err.message);
-  }
-}
+      try {
+        window.Jupiter.init({
+          displayMode: "integrated",
+          integratedTargetId: "integrated-terminal",
+          endpoint: "https://api.mainnet-beta.solana.com",
+          strictTokenList: false, // Allow unverified tokens (e.g., PandaFun)
+          defaultExplorer: "Solscan",
+          formProps: {
+            initialInputMint: "So11111111111111111111111111111111111111112", // SOL
+            initialOutputMint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", // Replace with actual PandaFun mint address
+            initialAmount: "1000000000", // 1 SOL in lamports
+            fixedInputMint: false, // Allow users to change the input token
+            fixedOutputMint: false, // Allow users to change the output token
+          },
+          theme: {
+            colors: {
+              primary: "var(--bamboo-green)", // #2dd4bf
+              secondary: "var(--coral-pink)", // #f472b6
+              background: "var(--panda-white)", // #ffffff
+              text: "var(--panda-black)", // #1a1a1a
+              accent: "var(--glow-soft)", // #a5f3fc
+            },
+            fontFamily: "'Poppins', sans-serif",
+          },
+        });
+        pandaLog('Jupiter Terminal initialized successfully!');
+        pandaBounceEffect(terminalContainer);
+      } catch (err) {
+        pandaLog('Failed to initialize Jupiter Terminal: ' + err);
+        alert('Failed to load swap interface: ' + err.message);
+      }
+    }
 
     // Initialize Effectss
     function initPandaFun() {
@@ -637,4 +734,5 @@ function initJupiterTerminal() {
     document.addEventListener('DOMContentLoaded', initPandaFun);
   </script>
 </body>
+
 </html>
