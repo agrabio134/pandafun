@@ -8,6 +8,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Jupiter Terminal -->
+  <script src='https://terminal.jup.ag/main-v4.js'></script>
   <style>
     :root {
       --panda-white: #ffffff;
@@ -223,6 +225,28 @@
       transform: scale(1.1);
     }
 
+    /* Jupiter Terminal Styles */
+    #integrated-terminal {
+      width: 100%;
+      max-width: 400px;
+      height: 568px;
+      margin: 0 auto;
+      border: 2px solid var(--bamboo-green);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #integrated-terminal::before {
+      content: '🐼';
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      font-size: clamp(30px, 8vw, 40px);
+      opacity: 0.05;
+      transform: rotate(20deg);
+    }
+
     /* Mobile-First Typography */
     h1, h2, h3, p, li {
       font-size: clamp(0.875rem, 3.5vw, 1rem);
@@ -364,6 +388,24 @@
     <div class="absolute top-4 right-4 panda-emoji text-3xl panda-pulse">🐾</div>
   </section>
 
+    <!-- Grab Section -->
+  <section id="grab" class="py-8 sm:py-16 bg-[var(--bamboo-green)] text-[var(--panda-white)]">
+    <div class="container mx-auto text-center">
+      <h2 class="text-6xl font-bold mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
+        <i class="fa-solid fa-coins fa-icon mr-2 text-3xl panda-spin"></i> Snag PandaFun
+      </h2>
+      <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto fade-in">
+        <p class="text-4xl mb-4" style="color: #1a1a1a;">Grab coins in 3 panda-tastic steps! <span class="panda-emoji text-3xl">🐼</span></p>
+        <ol class="list-decimal list-inside text-left text-2xl">
+          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-wallet fa-icon mr-2 panda-pulse"></i> Connect your Solana wallet.</li>
+          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-exchange-alt fa-icon mr-2 panda-pulse"></i> Select tokens to swap.</li>
+          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-check-circle fa-icon mr-2 panda-pulse"></i> Confirm and snag your PandaFun coins!</li>
+        </ol>
+        <div id="integrated-terminal" class="mt-4" style="width: 100%; max-width: 800px; height: 568px; background-color: #1a1a1a;"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- Vibe Section -->
   <section id="vibe" class="py-8 sm:py-16 bg-[var(--panda-white)]">
     <div class="container mx-auto text-center">
@@ -390,25 +432,7 @@
     </div>
   </section>
 
-  <!-- Grab Section -->
-  <section id="grab" class="py-8 sm:py-16 bg-[var(--bamboo-green)] text-[var(--panda-white)]">
-    <div class="container mx-auto text-center">
-      <h2 class="text-6xl font-bold mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
-        <i class="fa-solid fa-coins fa-icon mr-2 text-3xl panda-spin"></i> Snag PandaFun
-      </h2>
-      <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto fade-in">
-        <p class="text-4xl mb-4" style="color: #1a1a1a;">Grab coins in 3 panda-tastic steps! <span class="panda-emoji text-3xl">🐼</span></p>
-        <ol class="list-decimal list-inside text-left text-2xl">
-          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-wallet fa-icon mr-2 panda-pulse"></i> Set up a panda-powered wallet.</li>
-          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-exchange-alt fa-icon mr-2 panda-pulse"></i> Visit our bamboo exchange.</li>
-          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-check-circle fa-icon mr-2 panda-pulse"></i> Snag your PandaFun coins!</li>
-        </ol>
-        <button class="panda-btn mt-4">
-          <i class="fa-solid fa-bolt fa-icon mr-2"></i> Grab Now!
-        </button>
-      </div>
-    </div>
-  </section>
+
 
   <!-- Crew Section -->
   <section id="crew" class="py-8 sm:py-16 bg-[var(--panda-white)]">
@@ -453,17 +477,17 @@
 
     function pandaBounceEffect(element) {
       element.classList.add('panda-bounce');
-      setTimeout(() => element.classList.remove('panda-bounce'), 1000);
+      setTimeout(() => { element.classList.remove('panda-bounce'); }, 1000);
     }
 
     function pandaSpinEffect(element) {
       element.classList.add('panda-spin');
-      setTimeout(() => element.classList.remove('panda-spin'), 3000);
+      setTimeout(() => { element.classList.remove('panda-spin'); }, 3000);
     }
 
     function pandaPulseEffect(element) {
       element.classList.add('panda-pulse');
-      setTimeout(() => element.classList.remove('panda-pulse'), 1500);
+      setTimeout(() => { element.classList.remove('panda-pulse'); }, 1500);
     }
 
     // Copy CA Text
@@ -542,12 +566,53 @@
       });
     }
 
+    // Initialize Jupiter Terminal
+    function initJupiterTerminal() {
+      const terminalContainer = document.getElementById('integrated-terminal');
+      if (!terminalContainer) {
+        pandaLog('Jupiter Terminal container not found!');
+        return;
+      }
+
+      try {
+        window.Jupiter.init({
+          displayMode: "integrated",
+          integratedTargetId: "integrated-terminal",
+          endpoint: "https://api.mainnet-beta.solana.com",
+          strictTokenList: false, // Allow unverified tokens (e.g., PandaFun)
+          defaultExplorer: "Solscan",
+          formProps: {
+            initialInputMint: "So11111111111111111111111111111111111111112", // SOL
+            initialOutputMint: "YOUR_PANDAFUN_MINT_ADDRESS", // Replace with actual PandaFun mint address
+            initialAmount: "1000000000", // 1 SOL in lamports
+            fixedOutputMint: true, // Lock output to PandaFun token
+          },
+          theme: {
+            colors: {
+              primary: "var(--bamboo-green)", // #2dd4bf
+              secondary: "var(--coral-pink)", // #f472b6
+              background: "var(--panda-white)", // #ffffff
+              text: "var(--panda-black)", // #1a1a1a
+              accent: "var(--glow-soft)", // #a5f3fc
+            },
+            fontFamily: "'Poppins', sans-serif",
+          },
+        });
+        pandaLog('Jupiter Terminal initialized successfully!');
+        pandaBounceEffect(terminalContainer);
+      } catch (err) {
+        pandaLog('Failed to initialize Jupiter Terminal: ' + err);
+        alert('Failed to load swap interface: ' + err.message);
+      }
+    }
+
     // Initialize Effects
     function initPandaFun() {
       initSmoothScroll();
       initHoverEffects();
       initScrollReveal();
       initButtonConfetti();
+      initJupiterTerminal();
       pandaLog('PandaFun initialized!');
     }
 
