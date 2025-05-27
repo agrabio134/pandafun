@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PandaFun - Coming Soon</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --panda-white: #ffffff;
+      --panda-black: #1a1a1a;
+      --bamboo-green: #2dd4bf;
+      --coral-pink: #f472b6;
+      --glow-soft: #a5f3fc;
+    }
+    body {
+      background: linear-gradient(135deg, var(--panda-white) 0%, var(--glow-soft) 100%);
+      font-family: 'Poppins', sans-serif;
+      color: var(--panda-black);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .panda-card {
+      background: var(--panda-white);
+      border: 2px solid var(--bamboo-green);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .panda-btn {
+      background: var(--bamboo-green);
+      color: var(--panda-white);
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .panda-btn:hover {
+      background: var(--coral-pink);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="panda-card">
+    <h1 class="text-4xl font-bold mb-4">Coming Soon! <span class="panda-emoji text-3xl">🐼</span></h1>
+    <p class="text-2xl mb-6">Stay tuned for the ultimate experience!</p>
+    <a href="index.html" class="panda-btn">Back to Home</a>
+  </div>
+</body>
+</html>
