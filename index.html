@@ -75,12 +75,9 @@
     }
 
     @keyframes panda-bounce {
-
-      0%,
-      100% {
+      0%, 100% {
         transform: translateY(0);
       }
-
       50% {
         transform: translateY(-8px);
       }
@@ -104,11 +101,9 @@
       0% {
         transform: scale(1);
       }
-
       50% {
         transform: scale(1.1);
       }
-
       100% {
         transform: scale(1);
       }
@@ -190,12 +185,10 @@
     .nav-container {
       display: flex;
       border-radius: 50px;
-
       justify-content: center;
       gap: clamp(0.25rem, 1.5vw, 0.5rem);
       background: rgba(255, 255, 255, 0.95);
       padding: clamp(0.25rem, 1.5vw, 0.5rem);
-      /* Top-left and bottom-left corners only */
       border: 1px solid var(--bamboo-green);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       max-width: 100%;
@@ -212,17 +205,16 @@
     }
 
     .panda-fun-branding {
-  /* background: rgba(0, 0, 0, 0.8); */
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-}
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+    }
 
-.panda-fun-branding .panda-emoji:hover {
-  transform: scale(1.3);
-  color: var(--coral-pink);
-}
+    .panda-fun-branding .panda-emoji:hover {
+      transform: scale(1.3);
+      color: var(--coral-pink);
+    }
 
     .ca-text {
       cursor: pointer;
@@ -365,7 +357,6 @@
         gap: clamp(0.5rem, 1.5vw, 0.75rem);
         padding: clamp(0.5rem, 1.5vw, 0.75rem);
         border-radius: 50px;
-
       }
 
       .nav-icon {
@@ -420,22 +411,16 @@
         padding: clamp(1.5rem, 3vw, 2rem);
       }
 
-      /* Make Grab section panda-card wider */
       #grab .panda-card {
         max-width: 1024px;
-        /* Equivalent to Tailwind's max-w-4xl */
       }
 
-      /* Adjust Jupiter Terminal width to match */
       #grab #integrated-terminal {
         max-width: 1024px;
-        /* Match the panda-card width */
       }
 
-      /* Move nav to top-right on desktop */
       .nav-container {
         border-radius: 50px 0 0 50px;
-
         left: auto;
         right: 0;
         transform: none;
@@ -482,6 +467,17 @@
         padding: clamp(2rem, 3vw, 2.5rem);
       }
     }
+
+    /* Custom list icon styling */
+    .token-info-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .token-info-list i {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+    }
   </style>
 </head>
 
@@ -496,7 +492,7 @@
 
   <!-- Hero Section -->
   <section id="home" class="relative flex items-center justify-center text-center scroll-parallax">
-    <div class="panda-card bg-opacity-95 bg-[var(--panda-white)] rounded-2xl  max-w-[90%] sm:max-w-3xl">
+    <div class="panda-card bg-opacity-95 bg-[var(--panda-white)] rounded-2xl max-w-[90%] sm:max-w-3xl">
       <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-4 flex items-center justify-center flex-wrap">
         PandaFun <span class="panda-emoji ml-2 text-4xl panda-bounce">🐼</span>
       </h2>
@@ -506,12 +502,29 @@
         <a href="https://x.com/lingdotfun" target="_blank" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
         <a href="#" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
       </div>
-<button class="panda-btn mt-6" onclick="window.location.href='coming-soon.html'">
-  <i class="fa-solid fa-rocket fa-icon mr-2"></i> LING LAUNCH!
-</button>
+      <button class="panda-btn mt-6" onclick="window.location.href='coming-soon.html'">
+        <i class="fa-solid fa-rocket fa-icon mr-2"></i> LING LAUNCH!
+      </button>
     </div>
     <div class="absolute bottom-4 left-4 panda-emoji text-3xl panda-pulse">🐾</div>
     <div class="absolute top-4 right-4 panda-emoji text-3xl panda-pulse">🐾</div>
+  </section>
+
+  <!-- Token Info Section -->
+  <section id="token-info" class="py-8 sm:py-16 bg-[var(--panda-white)]">
+    <div class="container mx-auto text-center">
+      <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
+        <i class="fa-solid fa-coins fa-icon mr-2 text-3xl panda-spin"></i> $LING Token
+      </h2>
+      <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto fade-in">
+        <p class="text-4xl text-[var(--panda-black)] mb-4">All about Panda Ling Fun! <span class="panda-emoji text-3xl">🐼</span></p>
+        <ul class="token-info-list text-left text-2xl text-[var(--panda-black)]">
+          <li class="mb-3"><i class="fa-solid fa-coins fa-icon panda-pulse"></i> <strong>Token Name:</strong> Panda Ling Fun ($LING)</li>
+          <li class="mb-3"><i class="fa-solid fa-rocket fa-icon panda-pulse"></i> <strong>Platform:</strong> LingLaunch</li>
+          <li class="mb-3"><i class="fa-solid fa-boxes fa-icon panda-pulse"></i> <strong>Maximum Supply:</strong> 100,000 tokens</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <!-- Grab Section -->
@@ -520,242 +533,233 @@
       <h2 class="text-6xl font-bold mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
         <i class="fa-solid fa-coins fa-icon mr-2 text-3xl panda-spin"></i> Snag PandaFun
       </h2>
-      <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto ">
-        <p class="text-4xl mb-4" style="color: #1a1a1a;">Grab coins in 3 panda-tastic steps! <span
-            class="panda-emoji text-3xl">🐼</span></p>
+      <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto">
+        <p class="text-4xl mb-4" style="color: #1a1a1a;">Grab coins in 3 panda-tastic steps! <span class="panda-emoji text-3xl">🐼</span></p>
         <ol class="list-decimal list-inside text-left text-2xl">
-          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-wallet fa-icon mr-2 panda-pulse"></i> Connect
-            your Solana wallet.</li>
-          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-exchange-alt fa-icon mr-2 panda-pulse"></i>
-            Select tokens to swap.</li>
-          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-check-circle fa-icon mr-2 panda-pulse"></i>
-            Confirm and snag your PandaFun coins!</li>
+          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-wallet fa-icon mr-2 panda-pulse"></i> Connect your Solana wallet.</li>
+          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-exchange-alt fa-icon mr-2 panda-pulse"></i> Select tokens to swap.</li>
+          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-check-circle fa-icon mr-2 panda-pulse"></i> Confirm and snag your PandaFun coins!</li>
         </ol>
-        <div id="integrated-terminal" class="mt-4 relative"
-          style="width: 100%; max-width: 600px; height: 558px; background-color: #1a1a1a;">
-          <!-- Custom PandaFun branding overlay -->
+        <div id="integrated-terminal" class="mt-4 relative" style="width: 100%; max-width: 600px; height: 558px; background-color: #1a1a1a;">
           <div class="panda-fun-branding absolute top-2 left-2 flex items-center z-10">
             <span class="panda-emoji text-2xl mr-1">🐼</span>
             <span class="text-lg font-bold" style="color: #ffffff;">PandaFun</span>
           </div>
         </div>
       </div>
-  </section>
+    </section>
 
-  <!-- Vibe Section -->
-  <section id="vibe" class="py-8 sm:py-16 bg-[var(--panda-white)]">
-    <div class="container mx-auto text-center">
-      <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
-        <i class="fa-solid fa-star fa-icon mr-2 text-3xl panda-spin"></i> Why PandaFun?
-      </h2>
-      <div class="grid gap-4 sm:gap-6">
-        <div class="panda-card fade-in">
-          <span class="panda-emoji text-4xl mb-3 panda-bounce">🐼</span>
-          <h3 class="text-4xl font-bold text-[var(--panda-black)] mb-2">Panda Bash</h3>
-          <p class="text-2xl text-[var(--panda-black)]">Unleash epic panda vibes with every trade!</p>
-        </div>
-        <div class="panda-card fade-in">
-          <i class="fa-solid fa-leaf fa-icon text-4xl mb-3 panda-spin"></i>
-          <h3 class="text-4xl font-bold text-[var(--panda-black)] mb-2">Bamboo Blast</h3>
-          <p class="text-2xl text-[var(--panda-black)]">Fast, green, and panda-powered blockchain!</p>
-        </div>
-        <div class="panda-card fade-in">
-          <i class="fa-solid fa-fire fa-icon text-4xl mb-3 panda-bounce"></i>
-          <h3 class="text-4xl font-bold text-[var(--panda-black)] mb-2">Wild Frenzy</h3>
-          <p class="text-2xl text-[var(--panda-black)]">Join the most vibrant panda community!</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Crew Section -->
-  <section id="crew" class="py-8 sm:py-16 bg-[var(--panda-white)]">
-    <div class="container mx-auto text-center">
-      <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
-        <i class="fa-solid fa-users fa-icon mr-2 text-3xl panda-spin"></i> PandaFun Squad
-      </h2>
-      <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto fade-in">
-        <p class="text-4xl text-[var(--panda-black)] mb-4">Join the wildest panda crew! <span
-            class="panda-emoji text-3xl">🐼</span></p>
-        <div class="flex justify-center gap-4 flex-wrap">
-          <a href="https://x.com/lingdotfun" target="_blank" class="text-3xl fa-icon panda-bounce"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" class="text-3xl fa-icon panda-bounce"><i class="fa-brands fa-telegram"></i></a>
+    <!-- Vibe Section -->
+    <section id="vibe" class="py-8 sm:py-16 bg-[var(--panda-white)]">
+      <div class="container mx-auto text-center">
+        <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
+          <i class="fa-solid fa-star fa-icon mr-2 text-3xl panda-spin"></i> Why PandaFun?
+        </h2>
+        <div class="grid gap-4 sm:gap-6">
+          <div class="panda-card fade-in">
+            <span class="panda-emoji text-4xl mb-3 panda-spin ">🐼</span>
+            <h3 class="text-4xl font-bold text-[var(--panda-black)] mb-2">Panda Bash</h3>
+            <p class="text-2xl text-[var(--panda-black)]">Unleash epic panda vibes with every trade!</p>
+          </div>
+          <div class="panda-card fade-in">
+            <i class="fa-solid fa-leaf fa-icon text-4xl mb-3 panda-spin"></i>
+            <h3 class="text-4xl font-bold text-[var(--panda-black)] mb-2">Bamboo Blast</h3>
+            <p class="text-2xl text-[var(--panda-black)]">Fast, green, and panda-powered blockchain!</p>
+          </div>
+          <div class="panda-card fade-in">
+            <i class="fa-solid fa-fire fa-icon text-4xl mb-3 panda-spin"></i>
+            <h3 class="text-4xl font-bold text-[var(--panda-black)] mb-2">Wild Frenzy</h3>
+            <p class="text-2xl text-[var(--panda-black)]">Join the most vibrant panda community!</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="bg-[var(--panda-white)] py-6 text-center panda-card mt-auto">
-    <div class="container mx-auto">
-      <p class="text-3xl text-[var(--panda-black)]"><span class="panda-emoji mr-2 text-3xl panda-bounce">🐼</span> ©
-        2025 PandaFun. Built for the Panda Community!</p>
-    </div>
-  </footer>
+    <!-- Crew Section -->
+    <section id="crew" class="py-8 sm:py-16 bg-[var(--panda-white)]">
+      <div class="container mx-auto text-center">
+        <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
+          <i class="fa-solid fa-users fa-icon mr-2 text-3xl panda-spin"></i> PandaFun Squad
+        </h2>
+        <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto fade-in">
+          <p class="text-4xl text-[var(--panda-black)] mb-4">Join the wildest panda crew! <span class="panda-emoji text-3xl">🐼</span></p>
+          <div class="flex justify-center gap-4 flex-wrap">
+            <a href="https://x.com/lingdotfun" target="_blank" class="text-3xl fa-icon panda-bounce"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="text-3xl fa-icon panda-bounce"><i class="fa-brands fa-telegram"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <script>
-    // Utility Functions
-    function pandaLog(message) {
-      console.log(`🐼 PandaFun: ${message}`);
-    }
+    <!-- Footer -->
+    <footer class="bg-[var(--panda-white)] py-6 text-center panda-card mt-auto">
+      <div class="container mx-auto">
+        <p class="text-3xl text-[var(--panda-black)]"><span class="panda-emoji mr-2 text-3xl panda-bounce">🐼</span> © 2025 PandaFun. Built for the Panda Community!</p>
+      </div>
+    </footer>
 
-    function generatePandaVibe(id) {
-      return `Panda Vibe #${id}: Ready to roll!`;
-    }
-
-    function createPandaConfetti(count) {
-      const confetti = [];
-      for (let i = 0; i < count; i++) {
-        confetti.push(`Confetti Panda ${i}: 🎉🐼`);
+    <script>
+      // Utility Functions
+      function pandaLog(message) {
+        console.log(`🐼 PandaFun: ${message}`);
       }
-      return confetti;
-    }
 
-    function pandaBounceEffect(element) {
-      element.classList.add('panda-bounce');
-      setTimeout(() => { element.classList.remove('panda-bounce'); }, 1000);
-    }
+      function generatePandaVibe(id) {
+        return `Panda Vibe #${id}: Ready to roll!`;
+      }
 
-    function pandaSpinEffect(element) {
-      element.classList.add('panda-spin');
-      setTimeout(() => { element.classList.remove('panda-spin'); }, 3000);
-    }
+      function createPandaConfetti(count) {
+        const confetti = [];
+        for (let i = 0; i < count; i++) {
+          confetti.push(`Confetti Panda ${i}: 🎉🐼`);
+        }
+        return confetti;
+      }
 
-    function pandaPulseEffect(element) {
-      element.classList.add('panda-pulse');
-      setTimeout(() => { element.classList.remove('panda-pulse'); }, 1500);
-    }
+      function pandaBounceEffect(element) {
+        element.classList.add('panda-bounce');
+        setTimeout(() => { element.classList.remove('panda-bounce'); }, 1000);
+      }
 
-    // Copy CA Text
-    function copyCAText() {
-      const caText = 'CA: SOON';
-      navigator.clipboard.writeText(caText).then(() => {
-        pandaLog('CA: SOON copied to clipboard!');
-        alert('Copied: ' + caText);
-      }).catch(err => {
-        pandaLog('Failed to copy CA text: ' + err);
-      });
-    }
+      function pandaSpinEffect(element) {
+        element.classList.add('panda-spin');
+        setTimeout(() => { element.classList.remove('panda-spin'); }, 3000);
+      }
 
-    // Smooth Scroll
-    function initSmoothScroll() {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+      function pandaPulseEffect(element) {
+        element.classList.add('panda-pulse');
+        setTimeout(() => { element.classList.remove('panda-pulse'); }, 1500);
+      }
+
+      // Copy CA Text
+      function copyCAText() {
+        const caText = 'CA: SOON';
+        navigator.clipboard.writeText(caText).then(() => {
+          pandaLog('CA: SOON copied to clipboard!');
+          alert('Copied: ' + caText);
+        }).catch(err => {
+          pandaLog('Failed to copy CA text: ' + err);
+        });
+      }
+
+      // Smooth Scroll
+      function initSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+              behavior: 'smooth'
+            });
+            pandaLog('Smooth scrolling to ' + this.getAttribute('href'));
           });
-          pandaLog('Smooth scrolling to ' + this.getAttribute('href'));
         });
-      });
-    }
-
-    // Hover and Touch Effects
-    function initHoverEffects() {
-      document.querySelectorAll('.fa-icon, .panda-emoji, .nav-icon, .social-icon').forEach(item => {
-        item.addEventListener('mouseenter', () => {
-          item.style.transform = 'scale(1.3)';
-          item.style.color = 'var(--panda-white)';
-          item.style.background = 'var(--coral-pink)';
-          pandaPulseEffect(item);
-        });
-        item.addEventListener('mouseleave', () => {
-          item.style.transform = 'scale(1)';
-          item.style.color = 'var(--panda-black)';
-          item.style.background = 'var(--panda-white)';
-        });
-        item.addEventListener('touchstart', () => {
-          item.style.transform = 'scale(1.3)';
-          item.style.color = 'var(--panda-white)';
-          item.style.background = 'var(--coral-pink)';
-          pandaPulseEffect(item);
-        });
-      });
-    }
-
-    // Scroll Reveal
-    function initScrollReveal() {
-      window.addEventListener('scroll', () => {
-        const elements = document.querySelectorAll('.fade-in');
-        elements.forEach(el => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.8) {
-            el.classList.add('visible');
-            pandaLog('Element revealed: ' + el.tagName);
-            pandaBounceEffect(el);
-          } else {
-            el.classList.remove('visible');
-          }
-        });
-      });
-    }
-
-    // Button Confetti
-    function initButtonConfetti() {
-      document.querySelectorAll('.panda-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          pandaLog('Button clicked, confetti time!');
-          const confetti = createPandaConfetti(20);
-          confetti.forEach(c => pandaLog(c));
-          pandaPulseEffect(btn);
-        });
-      });
-    }
-
-    // Initialize Jupiter Terminal
-    function initJupiterTerminal() {
-      const terminalContainer = document.getElementById('integrated-terminal');
-      if (!terminalContainer) {
-        pandaLog('Jupiter Terminal container not found!');
-        return;
       }
 
-      try {
-        window.Jupiter.init({
-          displayMode: "integrated",
-          integratedTargetId: "integrated-terminal",
-          endpoint: "https://api.mainnet-beta.solana.com",
-          strictTokenList: false, // Allow unverified tokens (e.g., PandaFun)
-          defaultExplorer: "Solscan",
-          formProps: {
-            initialInputMint: "So11111111111111111111111111111111111111112", // SOL
-            initialOutputMint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", // Replace with actual PandaFun mint address
-            initialAmount: "1000000000", // 1 SOL in lamports
-            fixedInputMint: false, // Allow users to change the input token
-            fixedOutputMint: false, // Allow users to change the output token
-          },
-          theme: {
-            colors: {
-              primary: "var(--bamboo-green)", // #2dd4bf
-              secondary: "var(--coral-pink)", // #f472b6
-              background: "var(--panda-white)", // #ffffff
-              text: "var(--panda-black)", // #1a1a1a
-              accent: "var(--glow-soft)", // #a5f3fc
+      // Hover and Touch Effects
+      function initHoverEffects() {
+        document.querySelectorAll('.fa-icon, .panda-emoji, .nav-icon, .social-icon').forEach(item => {
+          item.addEventListener('mouseenter', () => {
+            item.style.transform = 'scale(1.3)';
+            item.style.color = 'var(--panda-white)';
+            item.style.background = 'var(--coral-pink)';
+            pandaPulseEffect(item);
+          });
+          item.addEventListener('mouseleave', () => {
+            item.style.transform = 'scale(1)';
+            item.style.color = 'var(--panda-black)';
+            item.style.background = 'var(--panda-white)';
+          });
+          item.addEventListener('touchstart', () => {
+            item.style.transform = 'scale(1.3)';
+            item.style.color = 'var(--panda-white)';
+            item.style.background = 'var(--coral-pink)';
+            pandaPulseEffect(item);
+          });
+        });
+      }
+
+      // Scroll Reveal
+      function initScrollReveal() {
+        window.addEventListener('scroll', () => {
+          const elements = document.querySelectorAll('.fade-in');
+          elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.8) {
+              el.classList.add('visible');
+              pandaLog('Element revealed: ' + el.tagName);
+              pandaBounceEffect(el);
+            } else {
+              el.classList.remove('visible');
+            }
+          });
+        });
+      }
+
+      // Button Confetti
+      function initButtonConfetti() {
+        document.querySelectorAll('.panda-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            pandaLog('Button clicked, confetti time!');
+            const confetti = createPandaConfetti(20);
+            confetti.forEach(c => pandaLog(c));
+            pandaPulseEffect(btn);
+          });
+        });
+      }
+
+      // Initialize Jupiter Terminal
+      function initJupiterTerminal() {
+        const terminalContainer = document.getElementById('integrated-terminal');
+        if (!terminalContainer) {
+          pandaLog('Jupiter Terminal container not found!');
+          return;
+        }
+
+        try {
+          window.Jupiter.init({
+            displayMode: "integrated",
+            integratedTargetId: "integrated-terminal",
+            endpoint: "https://api.mainnet-beta.solana.com",
+            strictTokenList: false,
+            defaultExplorer: "Solscan",
+            formProps: {
+              initialInputMint: "So11111111111111111111111111111111111111112",
+              initialOutputMint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+              initialAmount: "1000000000",
+              fixedInputMint: false,
+              fixedOutputMint: false,
             },
-            fontFamily: "'Poppins', sans-serif",
-          },
-        });
-        pandaLog('Jupiter Terminal initialized successfully!');
-        pandaBounceEffect(terminalContainer);
-      } catch (err) {
-        pandaLog('Failed to initialize Jupiter Terminal: ' + err);
-        alert('Failed to load swap interface: ' + err.message);
+            theme: {
+              colors: {
+                primary: "var(--bamboo-green)",
+                secondary: "var(--coral-pink)",
+                background: "var(--panda-white)",
+                text: "var(--panda-black)",
+                accent: "var(--glow-soft)",
+              },
+              fontFamily: "'Poppins', sans-serif",
+            },
+          });
+          pandaLog('Jupiter Terminal initialized successfully!');
+          pandaBounceEffect(terminalContainer);
+        } catch (err) {
+          pandaLog('Failed to initialize Jupiter Terminal: ' + err);
+          alert('Failed to load swap interface: ' + err.message);
+        }
       }
-    }
 
-    // Initialize Effectss
-    function initPandaFun() {
-      initSmoothScroll();
-      initHoverEffects();
-      initScrollReveal();
-      initButtonConfetti();
-      initJupiterTerminal();
-      pandaLog('PandaFun initialized!');
-    }
+      // Initialize Effects
+      function initPandaFun() {
+        initSmoothScroll();
+        initHoverEffects();
+        initScrollReveal();
+        initButtonConfetti();
+        initJupiterTerminal();
+        pandaLog('PandaFun initialized!');
+      }
 
-    // Run Initialization
-    document.addEventListener('DOMContentLoaded', initPandaFun);
-  </script>
+      // Run Initialization
+      document.addEventListener('DOMContentLoaded', initPandaFun);
+    </script>
 </body>
-
 </html>
