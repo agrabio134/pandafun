@@ -321,7 +321,9 @@
     #home {
       min-height: 100vh;
       padding: 3rem 0.5rem;
-      background-image: url('https://source.unsplash.com/random/800x600/?panda,fun');
+      background-image: url('panda-portrait.jpg');
+      background-size: cover;
+      background-position: center;
     }
 
     .scroll-parallax {
@@ -351,7 +353,7 @@
       }
 
       #home {
-        background-image: url('https://source.unsplash.com/random/1280x720/?panda,fun');
+        background-image: url('panda-portrait.jpg');
       }
 
       .panda-card {
@@ -400,7 +402,7 @@
       }
 
       #home {
-        background-image: url('https://source.unsplash.com/random/1920x1080/?panda,fun');
+        background-image: url('panda-portrait.jpg');
         background-attachment: fixed;
       }
 
@@ -498,6 +500,7 @@
   <!-- Hero Section -->
   <section id="home" class="relative flex items-center justify-center text-center scroll-parallax">
     <div class="panda-card bg-opacity-95 bg-[var(--panda-white)] rounded-2xl max-w-[90%] sm:max-w-3xl">
+      <!-- <img src="panda-portrait.jpg" alt="Panda Portrait" class="w-full h-48 object-cover rounded-t-2xl mb-4"> -->
       <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-4 flex items-center justify-center flex-wrap">
         PandaFun <span class="panda-emoji ml-2 text-4xl panda-bounce">🐼</span>
       </h2>
@@ -505,7 +508,7 @@
       <span class="ca-text" onclick="copyCAText()">CA: SOON</span>
       <div class="flex justify-center gap-4 mt-6 flex-wrap">
         <a href="https://x.com/lingdotfun" target="_blank" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="#" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
+        <a href="https://t.me/pandaling" target="_blank" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
       </div>
       <button class="panda-btn mt-6" onclick="window.location.href='linglaunch.html'">
         <i class="fa-solid fa-rocket fa-icon mr-2"></i> LING LAUNCH!
@@ -514,8 +517,6 @@
     <div class="absolute bottom-4 left-4 panda-emoji text-3xl panda-pulse">🐾</div>
     <div class="absolute top-4 right-4 panda-emoji text-3xl panda-pulse">🐾</div>
   </section>
-
-
 
   <!-- Grab Section -->
   <section id="grab" class="py-8 sm:py-16 bg-[var(--bamboo-green)] text-[var(--panda-white)]">
@@ -545,6 +546,7 @@
         <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
           <i class="fa-solid fa-star fa-icon mr-2 text-3xl panda-spin"></i> Why PandaFun?
         </h2>
+        <img src="banner.jpg" alt="PandaFun Banner" class="w-full max-w-3xl mx-auto mb-6 rounded-2xl">
         <div class="grid gap-4 sm:gap-6">
           <div class="panda-card fade-in">
             <span class="panda-emoji text-4xl mb-3 panda-spin">🐼</span>
@@ -565,22 +567,22 @@
       </div>
     </section>
 
-      <!-- Token Info Section -->
-  <section id="token-info" class="py-8 sm:py-16 bg-[var(--panda-white)]">
-    <div class="container mx-auto text-center">
-      <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
-        <i class="fa-solid fa-coins fa-icon mr-2 text-3xl panda-spin"></i> $LING Token
-      </h2>
-      <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto fade-in">
-        <p class="text-4xl text-[var(--panda-black)] mb-4">All about Panda Ling Fun! <span class="panda-emoji text-3xl">🐼</span></p>
-        <ul class="token-info-list text-left text-2xl text-[var(--panda-black)]">
-          <li class="mb-3"><i class="fa-solid fa-coins fa-icon panda-pulse"></i> <strong>Token Name:</strong> Panda Ling Fun ($LING)</li>
-          <li class="mb-3"><i class="fa-solid fa-rocket fa-icon panda-pulse"></i> <strong>Platform:</strong> LingLaunch</li>
-          <li class="mb-3"><i class="fa-solid fa-boxes fa-icon panda-pulse"></i> <strong>Maximum Supply:</strong> 100,000 tokens</li>
-        </ul>
+    <!-- Token Info Section -->
+    <section id="token-info" class="py-8 sm:py-16 bg-[var(--panda-white)]">
+      <div class="container mx-auto text-center">
+        <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
+          <i class="fa-solid fa-coins fa-icon mr-2 text-3xl panda-spin"></i> $LING Token
+        </h2>
+        <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto fade-in">
+          <p class="text-4xl text-[var(--panda-black)] mb-4">All about Panda Ling Fun! <span class="panda-emoji text-3xl">🐼</span></p>
+          <ul class="token-info-list text-left text-2xl text-[var(--panda-black)]">
+            <li class="mb-3"><i class="fa-solid fa-coins fa-icon panda-pulse"></i> <strong>Token Name:</strong> Panda Ling Fun ($LING)</li>
+            <li class="mb-3"><i class="fa-solid fa-rocket fa-icon panda-pulse"></i> <strong>Platform:</strong> LingLaunch</li>
+            <li class="mb-3"><i class="fa-solid fa-boxes fa-icon panda-pulse"></i> <strong>Maximum Supply:</strong> 100,000 tokens</li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
     <!-- Crew Section -->
     <section id="crew" class="py-8 sm:py-16 bg-[var(--panda-white)]">
@@ -592,7 +594,7 @@
           <p class="text-4xl text-[var(--panda-black)] mb-4">Join the wildest panda crew! <span class="panda-emoji text-3xl">🐼</span></p>
           <div class="flex justify-center gap-4 flex-wrap">
             <a href="https://x.com/lingdotfun" target="_blank" class="text-3xl fa-icon panda-bounce"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#" class="text-3xl fa-icon panda-bounce"><i class="fa-brands fa-telegram"></i></a>
+            <a href="https://t.me/pandaling" target="_blank" class="text-3xl fa-icon panda-bounce"><i class="fa-brands fa-telegram"></i></a>
           </div>
         </div>
       </div>
