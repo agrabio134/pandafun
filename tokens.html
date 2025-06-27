@@ -469,26 +469,177 @@
     .sell-btn:hover {
       background: var(--coral-pink);
     }
-
+/* Mobile Responsive Styles */
     @media (max-width: 768px) {
-      .modal-content {
+      .navbar {
+        padding: 0.75rem 1rem;
+      }
+
+      .nav-links {
+        display: none;
         flex-direction: column;
-        margin: 1rem;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 1rem;
+        gap: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .meme-card {
+        padding: 1rem;
+        margin: 0.5rem auto;
+      }
+
+      .king-card,
+      .token-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.8rem;
+      }
+
+      .token-image {
+        width: 50px;
+        height: 50px;
+      }
+
+      .token-info h3 {
+        font-size: 1rem;
+      }
+
+      .token-info p {
+        font-size: 0.75rem;
+      }
+
+      .search-bar {
+        flex-direction: column;
+      }
+
+      .search-bar input {
+        width: 100%;
+      }
+
+      .search-bar button {
+        width: 100%;
+        padding: 0.6rem;
+      }
+
+      .token-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ticker span {
+        font-size: 0.8rem;
+      }
+
+      .modal-content {
         padding: 1rem;
       }
 
-      .modal-left,
-      .modal-right {
-        padding: 0;
-        border: none;
+      .chart-placeholder {
+        height: 200px;
       }
 
-      .modal-right {
-        margin-top: 1rem;
+      .tab-btn,
+      .trade-tab {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+      }
+
+      .trade-input,
+      .trade-btn,
+      .slippage-btn,
+      .slippage-input {
+        font-size: 0.85rem;
+      }
+
+      .token-details .flex.items-center {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .token-details img {
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar img {
+        width: 28px;
+        height: 28px;
+      }
+
+      .navbar span {
+        font-size: 1.25rem;
+      }
+
+      .hamburger {
+        font-size: 1.25rem;
+      }
+
+      .meme-card {
+        padding: 0.75rem;
+      }
+
+      .token-info h3 {
+        font-size: 0.95rem;
+      }
+
+      .token-info p {
+        font-size: 0.7rem;
+      }
+
+      .social-icons a {
+        font-size: 0.8rem;
+      }
+
+      .time-ago {
+        font-size: 0.65rem;
+      }
+
+      .ticker span {
+        font-size: 0.75rem;
+      }
+
+      footer {
+        font-size: 0.8rem;
+      }
+
+      .powered-by img {
+        width: 18px;
+        height: 18px;
+      }
+
+      .modal-close {
+        font-size: 1rem;
       }
 
       .chart-placeholder {
-        height: 300px;
+        height: 180px;
+        font-size: 0.9rem;
+      }
+
+      .tab-btn,
+      .trade-tab {
+        font-size: 0.8rem;
+      }
+
+      .trade-input,
+      .trade-btn,
+      .slippage-btn,
+      .slippage-input {
+        font-size: 0.8rem;
       }
     }
   </style>
