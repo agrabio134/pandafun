@@ -34,19 +34,39 @@
     .navbar {
       background: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(8px);
-      padding: 1rem 2rem;
+      padding: 1rem 1.5rem;
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .navbar img {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid var(--bamboo-green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      cursor: pointer;
     }
 
     .meme-card {
@@ -54,9 +74,8 @@
       backdrop-filter: blur(12px);
       border: 1px solid var(--bamboo-green);
       border-radius: 16px;
-      padding: 2rem;
-      max-width: 90%;
-      width: 1400px;
+      padding: 1.5rem;
+      max-width: 95%;
       margin: 1rem auto;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
@@ -70,12 +89,13 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      max-width: 600px;
+      max-width: 100%;
       cursor: pointer;
+      transition: transform 0.3s ease;
     }
 
     .king-card {
-      margin: 2rem auto;
+      margin: 1.5rem auto;
       box-shadow: 0 8px 25px rgba(153, 69, 255, 0.5);
     }
 
@@ -84,8 +104,8 @@
     }
 
     .token-image {
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
       border-radius: 12px;
       object-fit: cover;
       border: 2px solid var(--solana-purple);
@@ -97,21 +117,21 @@
     }
 
     .token-info h3 {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       font-weight: 700;
       margin: 0;
     }
 
     .token-info p {
       color: var(--text-secondary);
-      margin: 0.25rem 0;
-      font-size: 0.85rem;
+      margin: 0.2rem 0;
+      font-size: 0.8rem;
     }
 
     .social-icons a {
       color: var(--bamboo-green);
       margin-right: 0.5rem;
-      font-size: 1rem;
+      font-size: 0.9rem;
       transition: color 0.3s ease;
     }
 
@@ -123,13 +143,13 @@
       position: absolute;
       top: 0;
       right: 0;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--text-secondary);
     }
 
     .bonding-curve {
       width: 100%;
-      height: 8px;
+      height: 6px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 4px;
       overflow: hidden;
@@ -145,18 +165,18 @@
     .search-bar {
       display: flex;
       gap: 0.5rem;
-      margin-bottom: 2rem;
-      max-width: 500px;
+      margin-bottom: 1.5rem;
+      max-width: 100%;
     }
 
     .search-bar input {
-      width: 100%;
-      padding: 0.75rem;
+      flex: 1;
+      padding: 0.6rem;
       border: 1px solid var(--bamboo-green);
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.08);
       color: var(--text-primary);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .search-bar input:focus {
@@ -172,7 +192,7 @@
 
     .token-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1rem;
     }
 
@@ -180,11 +200,10 @@
       background: rgba(0, 0, 0, 0.5);
       border-radius: 8px;
       padding: 0.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       overflow: hidden;
       white-space: nowrap;
       width: 100%;
-      max-width: 100%;
     }
 
     .ticker {
@@ -193,16 +212,15 @@
     }
 
     .ticker span {
-      margin-right: 2rem;
+      margin-right: 1.5rem;
       color: var(--bamboo-green);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     @keyframes ticker {
       0% {
         transform: translateX(0);
       }
-
       100% {
         transform: translateX(-100%);
       }
@@ -213,12 +231,12 @@
       padding: 1rem;
       text-align: center;
       color: var(--text-secondary);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .social-icons-footer a {
       color: var(--text-primary);
-      margin: 0 0.75rem;
+      margin: 0 0.5rem;
       transition: color 0.3s ease;
     }
 
@@ -231,7 +249,7 @@
       align-items: center;
       justify-content: center;
       margin-top: 1rem;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--text-secondary);
     }
 
@@ -249,8 +267,8 @@
     }
 
     .powered-by img {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
     }
 
     .modal {
@@ -262,39 +280,36 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.9);
       z-index: 2000;
-      overflow: auto;
+      overflow-y: auto;
     }
 
     .modal-content {
       display: flex;
-      max-width: 90%;
-      width: 1200px;
-      margin: 2rem auto;
+      flex-direction: column;
+      max-width: 95%;
+      margin: 1rem auto;
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(12px);
       border: 1px solid var(--bamboo-green);
       border-radius: 16px;
-      padding: 2rem;
+      padding: 1.5rem;
       position: relative;
     }
 
-    .modal-left {
-      flex: 2;
-      padding-right: 1rem;
+    .modal-left,
+    .modal-right {
+      padding: 0;
     }
 
     .modal-right {
-      flex: 1;
-      padding-left: 1rem;
-      border-left: 1px solid var-- Grado de confianza: 0,6
-      border-solana-purple;
+      margin-top: 1rem;
     }
 
     .modal-close {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 1.5rem;
+      top: 0.75rem;
+      right: 0.75rem;
+      font-size: 1.25rem;
       color: var(--text-primary);
       cursor: pointer;
     }
@@ -305,7 +320,7 @@
 
     .chart-placeholder {
       width: 100%;
-      height: 400px;
+      height: 250px;
       background: rgba(0, 0, 0, 0.5);
       border-radius: 8px;
       display: flex;
@@ -313,7 +328,7 @@
       align-items: center;
       justify-content: center;
       color: var(--text-secondary);
-      font-size: 1.2rem;
+      font-size: 1rem;
       text-align: center;
     }
 
@@ -322,18 +337,19 @@
     }
 
     .token-details p {
-      margin: 0.5rem 0;
-      font-size: 0.95rem;
+      margin: 0.4rem 0;
+      font-size: 0.9rem;
       color: var(--text-secondary);
     }
 
     .tab-btn {
-      padding: 0.5rem 1rem;
+      padding: 0.4rem 0.8rem;
       background: none;
       border: none;
       color: var(--text-secondary);
       font-weight: 600;
       cursor: pointer;
+      font-size: 0.9rem;
       transition: color 0.3s ease;
     }
 
@@ -350,7 +366,7 @@
       background: rgba(255, 255, 255, 0.05);
       border-radius: 8px;
       padding: 1rem;
-      min-height: 100px;
+      min-height: 80px;
     }
 
     .tab-content.hidden {
@@ -358,12 +374,13 @@
     }
 
     .trade-tab {
-      padding: 0.5rem 1rem;
+      padding: 0.4rem 0.8rem;
       background: none;
       border: none;
       color: var(--text-secondary);
       font-weight: 600;
       cursor: pointer;
+      font-size: 0.9rem;
       transition: color 0.3s ease;
     }
 
@@ -383,7 +400,7 @@
       border: 1px solid var(--bamboo-green);
       border-radius: 8px;
       color: var(--text-primary);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .trade-input:focus {
@@ -400,6 +417,7 @@
       border-radius: 8px;
       font-weight: 600;
       cursor: pointer;
+      font-size: 0.9rem;
     }
 
     .trade-btn:hover {
@@ -407,12 +425,12 @@
     }
 
     .slippage-btn {
-      padding: 0.5rem 1rem;
+      padding: 0.4rem 0.8rem;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--bamboo-green);
       border-radius: 8px;
       color: var(--text-primary);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       cursor: pointer;
     }
 
@@ -427,13 +445,13 @@
     }
 
     .slippage-input {
-      width: 80px;
-      padding: 0.5rem;
+      width: 70px;
+      padding: 0.4rem;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--bamboo-green);
       border-radius: 8px;
       color: var(--text-primary);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
 
     .slippage-input:focus {
@@ -443,10 +461,10 @@
 
     .trade-action-btn {
       width: 100%;
-      padding: 0.75rem;
+      padding: 0.6rem;
       border: none;
       border-radius: 8px;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
       cursor: pointer;
       transition: background 0.3s ease;
@@ -469,7 +487,8 @@
     .sell-btn:hover {
       background: var(--coral-pink);
     }
-/* Mobile Responsive Styles */
+
+    /* Mobile Responsive Styles */
     @media (max-width: 768px) {
       .navbar {
         padding: 0.75rem 1rem;
@@ -646,12 +665,15 @@
 </head>
 
 <body>
-  <nav class="navbar flex justify-between items-center">
+  <nav class="navbar">
     <div class="flex items-center gap-2">
       <img src="panda-portrait.jpg" alt="LingLaunch Logo">
       <span class="text-2xl font-extrabold">LingLaunch</span>
     </div>
-    <div class="flex gap-4 items-center">
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="nav-links" id="nav-links">
       <a href="index.html" class="text-sm font-semibold hover:text-bamboo-green transition-colors">Home</a>
       <a href="#tokens" class="text-sm font-semibold hover:text-bamboo-green transition-colors">Tokens</a>
       <a href="docs.html" class="text-sm font-semibold hover:text-bamboo-green transition-colors">Docs</a>
@@ -799,7 +821,7 @@
     </div>
   </section>
 
-<!-- Modal Structure -->
+  <!-- Modal Structure -->
   <div class="modal" id="token-modal">
     <div class="modal-content">
       <span class="modal-close" id="modal-close">×</span>
@@ -844,7 +866,8 @@
           <p class="flex items-center gap-2">
             <strong>Bonding Curve:</strong> 
             <span id="modal-token-curve"></span>
-            <span id="bonding-curve-loading" class="animate-pulse text-bamboo-green">•</p>
+            <span id="bonding-curve-loading" class="animate-pulse text-bamboo-green">•</span>
+          </p>
           <p><strong>Description:</strong> <span id="modal-token-desc"></span></p>
         </div>
         <div class="trade-section mt-6">
@@ -884,8 +907,6 @@
     </div>
   </div>
 
-
-
   <footer>
     <div class="social-icons-footer">
       <a href="https://x.com/LingDotFun" target="_blank"><i class="fab fa-x fa-lg"></i></a>
@@ -896,6 +917,14 @@
   </footer>
 
   <script>
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
     // Existing scripts
     document.getElementById('connect-wallet').addEventListener('click', () => {
       alert('Connect your Solana wallet (e.g., Phantom, Solflare) to proceed.');
@@ -935,4 +964,7 @@
         modal.style.display = 'none';
       }
     });
-    </script>
+  </script>
+</body>
+
+</html>
