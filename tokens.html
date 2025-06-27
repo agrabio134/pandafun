@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingLaunch - Meme Tokens (Testnet)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --panda-white: #f5f5f5;
+      --panda-black: #0a0a0a;
+      --bamboo-green: #2dd4bf;
+      --coral-pink: #f472b6;
+      --glow-soft: #a5f3fc;
+      --solana-purple: #9945FF;
+      --solana-dark: #0d0d2b;
+      --text-primary: #ffffff;
+      --text-secondary: #d1d5db;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--solana-dark) 0%, #1e1e4a 50%, var(--glow-soft) 100%);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--bamboo-green);
+    }
+
+    .meme-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--bamboo-green);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 90%;
+      width: 1400px;
+      margin: 1rem auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .king-card,
+    .token-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--bamboo-green);
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 600px;
+      cursor: pointer;
+    }
+
+    .king-card {
+      margin: 2rem auto;
+      box-shadow: 0 8px 25px rgba(153, 69, 255, 0.5);
+    }
+
+    .token-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .token-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid var(--solana-purple);
+    }
+
+    .token-info {
+      flex: 1;
+      position: relative;
+    }
+
+    .token-info h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .token-info p {
+      color: var(--text-secondary);
+      margin: 0.25rem 0;
+      font-size: 0.85rem;
+    }
+
+    .social-icons a {
+      color: var(--bamboo-green);
+      margin-right: 0.5rem;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: var(--coral-pink);
+    }
+
+    .time-ago {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .bonding-curve {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0.5rem 0;
+    }
+
+    .bonding-curve-progress {
+      height: 100%;
+      background: var(--bamboo-green);
+      transition: width 0.3s ease;
+    }
+
+    .search-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--bamboo-green);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      border-color: var(--solana-purple);
+      box-shadow: 0 0 8px rgba(153, 69, 255, 0.4);
+    }
+
+    .search-bar input::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+      gap: 1rem;
+    }
+
+    .ticker-container {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      padding: 0.5rem;
+      margin-bottom: 2rem;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .ticker {
+      display: inline-block;
+      animation: ticker 20s linear infinite;
+    }
+
+    .ticker span {
+      margin-right: 2rem;
+      color: var(--bamboo-green);
+      font-size: 0.9rem;
+    }
+
+    @keyframes ticker {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    footer {
+      background: var(--solana-dark);
+      padding: 1rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .social-icons-footer a {
+      color: var(--text-primary);
+      margin: 0 0.75rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons-footer a:hover {
+      color: var(--bamboo-green);
+    }
+
+    .powered-by {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .powered-by a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--bamboo-green);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .powered-by a:hover {
+      color: var(--coral-pink);
+    }
+
+    .powered-by img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      overflow: auto;
+    }
+
+    .modal-content {
+      display: flex;
+      max-width: 90%;
+      width: 1200px;
+      margin: 2rem auto;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--bamboo-green);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .modal-left {
+      flex: 2;
+      padding-right: 1rem;
+    }
+
+    .modal-right {
+      flex: 1;
+      padding-left: 1rem;
+      border-left: 1px solid var-- Grado de confianza: 0,6
+      border-solana-purple;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: var(--coral-pink);
+    }
+
+    .chart-placeholder {
+      width: 100%;
+      height: 400px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .chart-placeholder p {
+      margin: 0.5rem 0;
+    }
+
+    .token-details p {
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .tab-btn {
+      padding: 0.5rem 1rem;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .tab-btn.active {
+      color: var(--bamboo-green);
+      border-bottom: 2px solid var(--bamboo-green);
+    }
+
+    .tab-btn:hover {
+      color: var(--coral-pink);
+    }
+
+    .tab-content {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 1rem;
+      min-height: 100px;
+    }
+
+    .tab-content.hidden {
+      display: none;
+    }
+
+    .trade-tab {
+      padding: 0.5rem 1rem;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .trade-tab.active {
+      color: var(--bamboo-green);
+      border-bottom: 2px solid var(--bamboo-green);
+    }
+
+    .trade-tab:hover {
+      color: var(--coral-pink);
+    }
+
+    .trade-input {
+      width: 100%;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--bamboo-green);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    .trade-input:focus {
+      outline: none;
+      border-color: var(--solana-purple);
+      box-shadow: 0 0 8px rgba(153, 69, 255, 0.4);
+    }
+
+    .trade-btn {
+      padding: 0.5rem 1rem;
+      background: var(--solana-purple);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .trade-btn:hover {
+      background: var(--coral-pink);
+    }
+
+    .slippage-btn {
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--bamboo-green);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .slippage-btn.active {
+      background: var(--bamboo-green);
+      color: var(--panda-black);
+    }
+
+    .slippage-btn:hover {
+      background: var(--coral-pink);
+      color: var(--panda-black);
+    }
+
+    .slippage-input {
+      width: 80px;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--bamboo-green);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 0.85rem;
+    }
+
+    .slippage-input:focus {
+      outline: none;
+      border-color: var(--solana-purple);
+    }
+
+    .trade-action-btn {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .buy-btn {
+      background: var(--bamboo-green);
+      color: var(--panda-black);
+    }
+
+    .buy-btn:hover {
+      background: var(--coral-pink);
+    }
+
+    .sell-btn {
+      background: var(--solana-purple);
+      color: var(--text-primary);
+    }
+
+    .sell-btn:hover {
+      background: var(--coral-pink);
+    }
+
+    @media (max-width: 768px) {
+      .modal-content {
+        flex-direction: column;
+        margin: 1rem;
+        padding: 1rem;
+      }
+
+      .modal-left,
+      .modal-right {
+        padding: 0;
+        border: none;
+      }
+
+      .modal-right {
+        margin-top: 1rem;
+      }
+
+      .chart-placeholder {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <img src="panda-portrait.jpg" alt="LingLaunch Logo">
+      <span class="text-2xl font-extrabold">LingLaunch</span>
+    </div>
+    <div class="flex gap-4 items-center">
+      <a href="index.html" class="text-sm font-semibold hover:text-bamboo-green transition-colors">Home</a>
+      <a href="#tokens" class="text-sm font-semibold hover:text-bamboo-green transition-colors">Tokens</a>
+      <a href="docs.html" class="text-sm font-semibold hover:text-bamboo-green transition-colors">Docs</a>
+      <button id="connect-wallet" class="panda-btn">
+        <i class="fas fa-wallet"></i> Connect
+      </button>
+    </div>
+  </nav>
+
+  <section class="meme-card mt-20">
+    <h2 class="text-2xl font-extrabold mb-4 text-center">Meme Tokens (Testnet)</h2>
+
+    <div class="king-of-the-hill">
+      <h3 class="text-xl font-bold text-center mb-2">👑 King of the Hill 👑</h3>
+      <div class="king-card" data-token-name="King of the Hill" data-token-symbol="KING" data-token-mc="-"
+        data-token-volume="-" data-token-creator="5J...3x9" data-token-holders="--" data-token-curve="60%"
+        data-token-desc="Don't buy test only">
+        <img
+          src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ_yWLCIvYMmML3cFLrY-m9KmSGAHHeNUvJhOwhJT2B8bu6tmIuZO3rg02iP-WHWaqooMOop1RXdmdaVil3vevTmQ"
+          class="token-image" alt="King of the Hill Token">
+        <div class="token-info">
+          <span class="time-ago">11h ago</span>
+          <h3>King of the Hill (KING)</h3>
+          <div class="social-icons">
+            <a href="https://x.com/KingHillTest" target="_blank"><i class="fab fa-x"></i></a>
+            <a href="https://t.me/kinghilltest" target="_blank"><i class="fab fa-telegram"></i></a>
+          </div>
+          <p><strong>MC:</strong> $10,000</p>
+          <p><strong>Creator:</strong> 5J...3x9</p>
+          <p><strong>Holders:</strong> --</p>
+          <p><strong>Bonding Curve:</strong> 60%</p>
+          <div class="bonding-curve">
+            <div class="bonding-curve-progress" style="width: 60%;"></div>
+          </div>
+          <p>Don't buy test only</p>
+        </div>
+      </div>
+    </div>
+    <div class="ticker-container">
+      <div class="ticker">
+        <span>Someone bought 1 SOL of KING ($TEST_TOKEN), +15% 🚀</span>
+        <span>PandaCoin ($TEST_TOKEN) up +10% after 0.5 SOL buy! 🐼</span>
+        <span>MoonBamboo ($TEST_TOKEN) bought for 2 SOL, +20% 🌙</span>
+        <span>SolPanda ($TEST_TOKEN) just got 1.5 SOL, +12% 🔥</span>
+        <span>BambooRocket ($TEST_TOKEN) purchased 0.8 SOL, +8% 🚀</span>
+      </div>
+    </div>
+    <h3 class="text-xl font-bold text-center mt-6 mb-2">All Tokens</h3>
+    <div class="search-bar">
+      <input type="text" id="token-search" placeholder="Search tokens by name or symbol...">
+      <button class="panda-btn"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="token-grid">
+      <div class="token-card" data-token-name="PandaCoin" data-token-symbol="PAND" data-token-mc="-"
+        data-token-volume="-" data-token-creator="7K...4y2" data-token-holders="--" data-token-curve="40%"
+        data-token-desc="A meme token for the LingLaunch community">
+        <img src="https://cdn.britannica.com/80/150980-050-84B9202C/Giant-panda-cub-branch.jpg" class="token-image"
+          alt="PandaCoin Token">
+        <div class="token-info">
+          <span class="time-ago">8h ago</span>
+          <h3>PandaCoin (PAND)</h3>
+          <div class="social-icons">
+            <a href="https://pandacoin.com" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <p><strong>MC:</strong> $2,500</p>
+          <p><strong>Creator:</strong> 7K...4y2</p>
+          <p><strong>Holders:</strong> --</p>
+          <p><strong>Bonding Curve:</strong> 40%</p>
+          <div class="bonding-curve">
+            <div class="bonding-curve-progress" style="width: 40%;"></div>
+          </div>
+          <p>A meme token for the LingLaunch community</p>
+        </div>
+      </div>
+      <div class="token-card" data-token-name="MoonBamboo" data-token-symbol="MOON" data-token-mc="-"
+        data-token-volume="-" data-token-creator="9L...5z3" data-token-holders="--" data-token-curve="35%"
+        data-token-desc="Shoot for the moon with this test token!">
+        <img
+          src="data:image/jpeg;base64,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"
+          class="token-image" alt="MoonBamboo Token">
+        <div class="token-info">
+          <span class="time-ago">10h ago</span>
+          <h3>MoonBamboo (MOON)</h3>
+          <div class="social-icons">
+            <a href="https://t.me/moonbamboo" target="_blank"><i class="fab fa-telegram"></i></a>
+          </div>
+          <p><strong>MC:</strong> $1,800</p>
+          <p><strong>Creator:</strong> 9L...5z3</p>
+          <p><strong>Holders:</strong> --</p>
+          <p><strong>Bonding Curve:</strong> 35%</p>
+          <div class="bonding-curve">
+            <div class="bonding-curve-progress" style="width: 35%;"></div>
+          </div>
+          <p>Shoot for the moon with this test token!</p>
+        </div>
+      </div>
+      <div class="token-card" data-token-name="SolPanda" data-token-symbol="SPND" data-token-mc="-"
+        data-token-volume="-" data-token-creator="3M...6a4" data-token-holders="--" data-token-curve="50%"
+        data-token-desc="A Solana-powered panda meme token">
+        <img src="https://images.unsplash.com/photo-1600585153490-76fb9a0d14f5?fit=crop&w=80&h=80" class="token-image"
+          alt="SolPanda Token">
+        <div class="token-info">
+          <span class="time-ago">7h ago</span>
+          <h3>SolPanda (SPND)</h3>
+          <div class="social-icons">
+            <a href="https://x.com/SolPandaTest" target="_blank"><i class="fab fa-x"></i></a>
+          </div>
+          <p><strong>MC:</strong> $3,000</p>
+          <p><strong>Creator:</strong> 3M...6a4</p>
+          <p><strong>Holders:</strong> --</p>
+          <p><strong>Bonding Curve:</strong> 50%</p>
+          <div class="bonding-curve">
+            <div class="bonding-curve-progress" style="width: 50%;"></div>
+          </div>
+          <p>A Solana-powered panda meme token</p>
+        </div>
+      </div>
+      <div class="token-card" data-token-name="BambooRocket" data-token-symbol="ROCK" data-token-mc="-"
+        data-token-volume="-" data-token-creator="8N...7b5" data-token-holders="--" data-token-curve="45%"
+        data-token-desc="Rocket to the stars with this test token!">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?fit=crop&w=80&h=80" class="token-image"
+          alt="BambooRocket Token">
+        <div class="token-info">
+          <span class="time-ago">9h ago</span>
+          <h3>BambooRocket (ROCK)</h3>
+          <div class="social-icons">
+            <a href="https://bamboorocket.com" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <p><strong>MC:</strong> $2,000</p>
+          <p><strong>Creator:</strong> 8N...7b5</p>
+          <p><strong>Holders:</strong> --</p>
+          <p><strong>Bonding Curve:</strong> 45%</p>
+          <div class="bonding-curve">
+            <div class="bonding-curve-progress" style="width: 45%;"></div>
+          </div>
+          <p>Rocket to the stars with this test token!</p>
+        </div>
+      </div>
+    </div>
+    <div class="powered-by">
+      <a href="https://meteora.ag" target="_blank">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-39Edxpaw-Tb2OhdSbNIyYPMfuK7HP7wOig&s"
+          alt="Meteora Logo"> Powered by Meteora Aggregator
+      </a>
+    </div>
+  </section>
+
+<!-- Modal Structure -->
+  <div class="modal" id="token-modal">
+    <div class="modal-content">
+      <span class="modal-close" id="modal-close">×</span>
+      <div class="modal-left">
+        <h3 class="text-xl font-bold mb-4">Chart</h3>
+        <div class="chart-placeholder">
+          <p>No Data Available</p>
+        </div>
+        <div class="transaction-section mt-4">
+          <div class="flex gap-2 mb-4">
+            <button class="tab-btn active" data-tab="transactions">Transactions</button>
+            <button class="tab-btn" data-tab="top-traders">Top Traders</button>
+            <button class="tab-btn" data-tab="holders">Holders</button>
+            <button class="tab-btn" data-tab="my-trades">My Trades</button>
+          </div>
+          <div id="transactions" class="tab-content active">
+            <p class="text-center text-text-secondary">No Data Available</p>
+          </div>
+          <div id="top-traders" class="tab-content hidden">
+            <p class="text-center text-text-secondary">No Data Available</p>
+          </div>
+          <div id="holders" class="tab-content hidden">
+            <p class="text-center text-text-secondary">No Data Available</p>
+          </div>
+          <div id="my-trades" class="tab-content hidden">
+            <p class="text-center text-text-secondary">No Data Available</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-right">
+        <div class="token-details">
+          <div class="flex items-center gap-4 mb-4">
+            <img id="modal-token-image" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ_yWLCIvYMmML3cFLrY-m9KmSGAHHeNUvJhOwhJT2B8bu6tmIuZO3rg02iP-WHWaqooMOop1RXdmdaVil3vevTmQ" alt="Token Image" class="w-16 h-16 rounded-lg border-2 border-solana-purple">
+            <div>
+              <h3 id="modal-token-name" class="text-2xl font-bold"></h3>
+              <p><strong>Symbol:</strong> <span id="modal-token-symbol"></span></p>
+            </div>
+          </div>
+          <p><strong>Market Cap:</strong> --<span id="modal-token-mc"></span></p>
+          <p><strong>Creator:</strong> <span id="modal-token-creator"></span></p>
+          <p><strong>Holders:</strong> <span id="modal-token-holders"></span></p>
+          <p class="flex items-center gap-2">
+            <strong>Bonding Curve:</strong> 
+            <span id="modal-token-curve"></span>
+            <span id="bonding-curve-loading" class="animate-pulse text-bamboo-green">•</p>
+          <p><strong>Description:</strong> <span id="modal-token-desc"></span></p>
+        </div>
+        <div class="trade-section mt-6">
+          <div class="flex justify-between items-center mb-2">
+            <div class="flex gap-2">
+              <button id="buy-tab" class="trade-tab active">Buy</button>
+              <button id="sell-tab" class="trade-tab">Sell</button>
+            </div>
+            <button id="refresh-price" class="text-sm text-bamboo-green hover:text-coral-pink">
+              <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+          </div>
+          <div class="trade-form">
+            <div class="mb-4">
+              <label class="block text-sm mb-1">Amount</label>
+              <div class="flex gap-2">
+                <input type="number" id="trade-amount" placeholder="0.0" class="trade-input">
+                <button id="max-btn" class="trade-btn">Max</button>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm mb-1">Slippage Tolerance</label>
+              <div class="flex gap-2">
+                <button class="slippage-btn" data-slippage="0.5">0.5%</button>
+                <button class="slippage-btn" data-slippage="1">1%</button>
+                <button class="slippage-btn" data-slippage="3">3%</button>
+                <input type="number" id="custom-slippage" placeholder="Custom" class="slippage-input">
+              </div>
+            </div>
+            <p class="text-sm text-text-secondary mb-4">
+              <strong>Est. Output:</strong> <span id="est-output">0.0</span> <span id="output-symbol"></span>
+            </p>
+            <button id="trade-btn" class="trade-action-btn buy-btn">Buy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <footer>
+    <div class="social-icons-footer">
+      <a href="https://x.com/LingDotFun" target="_blank"><i class="fab fa-x fa-lg"></i></a>
+      <a href="https://t.me/linglaunch" target="_blank"><i class="fab fa-telegram fa-lg"></i></a>
+      <a href="https://linglaunch.com" target="_blank"><i class="fas fa-globe fa-lg"></i></a>
+    </div>
+    <p class="mt-2">© 2025 LingLaunch. Powered by Solana.</p>
+  </footer>
+
+  <script>
+    // Existing scripts
+    document.getElementById('connect-wallet').addEventListener('click', () => {
+      alert('Connect your Solana wallet (e.g., Phantom, Solflare) to proceed.');
+    });
+
+    document.getElementById('token-search').addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      const tokenCards = document.querySelectorAll('.token-card, .king-card');
+      tokenCards.forEach(card => {
+        const tokenName = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = tokenName.includes(searchTerm) ? 'flex' : 'none';
+      });
+    });
+
+    const modal = document.getElementById('token-modal');
+    const closeModal = document.getElementById('modal-close');
+    const tokenCards = document.querySelectorAll('.token-card, .king-card');
+
+    tokenCards.forEach(card => {
+      card.addEventListener('click', () => {
+        document.getElementById('modal-token-name').textContent = card.dataset.tokenName + ' (' + card.dataset.tokenSymbol + ')';
+        document.getElementById('modal-token-symbol').textContent = card.dataset.tokenSymbol;
+        document.getElementById('modal-token-creator').textContent = card.dataset.tokenCreator;
+        document.getElementById('modal-token-holders').textContent = card.dataset.tokenHolders;
+        document.getElementById('modal-token-curve').textContent = card.dataset.tokenCurve;
+        document.getElementById('modal-token-desc').textContent = card.dataset.tokenDesc;
+        modal.style.display = 'block';
+      });
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+    </script>

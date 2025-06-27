@@ -3,58 +3,276 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PandaFun - Coming Soon</title>
+  <title>LingLaunch - Solana Token Launchpad</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --panda-white: #ffffff;
-      --panda-black: #1a1a1a;
+      --panda-white: #f5f5f5;
+      --panda-black: #0a0a0a;
       --bamboo-green: #2dd4bf;
       --coral-pink: #f472b6;
       --glow-soft: #a5f3fc;
+      --solana-purple: #9945FF;
+      --solana-dark: #0d0d2b;
+      --text-primary: #ffffff;
+      --text-secondary: #d1d5db;
     }
     body {
-      background: linear-gradient(135deg, var(--panda-white) 0%, var(--glow-soft) 100%);
-      font-family: 'Poppins', sans-serif;
-      color: var(--panda-black);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      background: linear-gradient(135deg, var(--solana-dark) 0%, #1e1e4a 50%, var(--glow-soft) 100%);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
       min-height: 100vh;
       margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-section {
+      background-image: url('banner.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: -1;
     }
     .panda-card {
-      background: var(--panda-white);
-      border: 2px solid var(--bamboo-green);
-      border-radius: 12px;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--bamboo-green);
+      border-radius: 16px;
+      padding: 1.5rem;
+      max-width: 700px;
+      margin: 1rem auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
-    .panda-btn {
-      background: var(--bamboo-green);
+    .panda-btn, .WASM-btn {
+      background: linear-gradient(90deg, var(--bamboo-green), var(--solana-purple));
       color: var(--panda-white);
-      padding: 0.75rem 1.5rem;
+      padding: 0.75rem 2rem;
       border-radius: 9999px;
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 1rem;
       transition: all 0.3s ease;
       text-decoration: none;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
     }
-    .panda-btn:hover {
-      background: var(--coral-pink);
-      transform: scale(1.05);
+    .panda-btn:hover, .WASM-btn:hover {
+      background: linear-gradient(90deg, var(--solana-purple), var(--coral-pink));
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(153, 69, 255, 0.5);
+    }
+    .navbar {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--bamboo-green);
+    }
+    .form-group label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      display: block;
+      text-align: left;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--bamboo-green);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--solana-purple);
+      box-shadow: 0 0 8px rgba(153, 69, 255, 0.4);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .form-group input[type="file"] {
+      padding: 0.5rem;
+      color: var(--text-secondary);
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+    footer {
+      background: var(--solana-dark);
+      padding: 1rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .social-icons a {
+      color: var(--text-primary);
+      margin: 0 0.75rem;
+      transition: color 0.3s ease;
+    }
+    .social-icons a:hover {
+      color: var(--bamboo-green);
+    }
+    .powered-by {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .powered-by a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--bamboo-green);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .powered-by a:hover {
+      color: var(--coral-pink);
+    }
+    .powered-by img {
+      width: 24px;
+      height: 24px;
     }
   </style>
 </head>
 <body>
-  <div class="panda-card">
-    <h1 class="text-4xl font-bold mb-4">Coming Soon! <span class="panda-emoji text-3xl">🐼</span></h1>
-    <p class="text-2xl mb-6">Stay tuned for the ultimate experience!</p>
-    <a href="index.html" class="panda-btn">Back to Home</a>
-  </div>
+  <nav class="navbar flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <img src="panda-portrait.jpg" alt="LingLaunch Logo">
+      <span class="text-2xl font-extrabold">LingLaunch</span>
+    </div>
+    <div class="flex gap-4 items-center">
+      <a href="#home" class="text-sm font-semibold hover:text-bamboo-green transition-colors">Home</a>
+      <a href="tokens.html" class="text-sm font-semibold hover:text-bamboo-green transition-colors">Tokens</a>
+      <a href="docs.html" class="text-sm font-semibold hover:text-bamboo-green transition-colors">Docs</a>
+      <button id="connect-wallet" class="WASM-btn">
+        <i class="fas fa-wallet"></i> Connect
+      </button>
+    </div>
+  </nav>
+
+  <section class="hero-section">
+    <div class="text-center">
+      <h1 class="text-4xl font-extrabold mb-2 flex items-center justify-center gap-2">
+        LingLaunch <span class="text-2xl">🐼</span>
+      </h1>
+      <p class="text-lg font-medium max-w-sm mx-auto">Launch your Solana token instantly!</p>
+    </div>
+  </section>
+
+  <section class="panda-card">
+    <h2 class="text-2xl font-extrabold mb-4 text-center">Create Token</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="form-group">
+        <label for="token-name">Token Name</label>
+        <input type="text" id="token-name" placeholder="e.g., LingCoin" required>
+      </div>
+      <div class="form-group">
+        <label for="token-symbol">Symbol</label>
+        <input type="text" id="token-symbol" placeholder="e.g., LING" maxlength="10" required>
+      </div>
+      <div class="form-group">
+        <label for="token-supply">Total Supply</label>
+        <input type="number" id="token-supply" placeholder="e.g., 1000000000" min="1" required>
+      </div>
+      <div class="form-group">
+        <label for="initial-price">Initial Price (SOL)</label>
+        <input type="number" id="initial-price" placeholder="e.g., 0.01" step="0.01" min="0" required>
+      </div>
+      <div class="form-group md:col-span-2">
+        <label for="token-description">Description</label>
+        <textarea id="token-description" rows="3" placeholder="Token purpose..."></textarea>
+      </div>
+      <div class="form-group">
+        <label for="token-image">Token Image</label>
+        <input type="file" id="token-image" accept="image/*">
+      </div>
+      <div class="form-group">
+        <label for="x-link">X Profile</label>
+        <input type="text" id="x-link" placeholder="e.g., https://x.com/LingDotFun">
+      </div>
+      <div class="form-group">
+        <label for="telegram-link">Telegram</label>
+        <input type="text" id="telegram-link" placeholder="e.g., https://t.me/linglaunch">
+      </div>
+      <div class="form-group">
+        <label for="website-link">Website</label>
+        <input type="text" id="website-link" placeholder="e.g., https://linglaunch.com">
+      </div>
+    </div>
+    <button id="create-token" class="panda-btn w-full mt-4">
+      <i class="fas fa-rocket"></i> Launch Token
+    </button>
+    <div class="powered-by">
+      <a href="https://meteora.ag" target="_blank">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-39Edxpaw-Tb2OhdSbNIyYPMfuK7HP7wOig&s" alt="Meteora Logo"> Powered by Meteora Aggregator
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="social-icons">
+      <a href="https://x.com/LingDotFun" target="_blank"><i class="fab fa-x fa-lg"></i></a>
+      <a href="https://t.me/linglaunch" target="_blank"><i class="fab fa-telegram fa-lg"></i></a>
+      <a href="https://linglaunch.com" target="_blank"><i class="fas fa-globe fa-lg"></i></a>
+    </div>
+    <p class="mt-2">© 2025 LingLaunch. Powered by Solana.</p>
+  </footer>
+
+  <script>
+    document.getElementById('connect-wallet').addEventListener('click', () => {
+      alert('Connect your Solana wallet (e.g., Phantom, Solflare) to proceed.');
+    });
+
+    document.getElementById('create-token').addEventListener('click', (e) => {
+      e.preventDefault();
+      const tokenName = document.getElementById('token-name').value;
+      const tokenSymbol = document.getElementById('token-symbol').value;
+      const tokenSupply = document.getElementById('token-supply').value;
+      const initialPrice = document.getElementById('initial-price').value;
+      const xLink = document.getElementById('x-link').value;
+      const telegramLink = document.getElementById('telegram-link').value;
+      const websiteLink = document.getElementById('website-link').value;
+
+      if (!tokenName || !tokenSymbol || !tokenSupply || !initialPrice) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      alert(`Token Creation Request:\nName: ${tokenName}\nSymbol: ${tokenSymbol}\nSupply: ${tokenSupply}\nInitial Price: ${initialPrice} SOL\nX: ${xLink || 'N/A'}\nTelegram: ${telegramLink || 'N/A'}\nWebsite: ${websiteLink || 'N/A'}\n\nToken creation functionality coming soon! Integrate with Solana SPL for deployment.`);
+    });
+  </script>
 </body>
 </html>

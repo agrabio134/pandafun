@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingLaunch - Documentation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --panda-white: #f5f5f5;
+      --panda-black: #0a0a0a;
+      --bamboo-green: #2dd4bf;
+      --coral-pink: #f472b6;
+      --glow-soft: #a5f3fc;
+      --solana-purple: #9945FF;
+      --solana-dark: #0d0d2b;
+      --text-primary: #ffffff;
+      --text-secondary: #d1d5db;
+    }
+    body {
+      background: linear-gradient(135deg, var(--solana-dark) 0%, #1e1e4a 50%, var(--glow-soft) 100%);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+    }
+    .container {
+      display: flex;
+      flex: 1;
+      margin-top: 4rem;
+    }
+    .sidebar {
+      width: 250px;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(8px);
+      padding: 1.5rem;
+      height: calc(100vh - 4rem);
+      position: fixed;
+      top: 4rem;
+      left: 0;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+    .sidebar img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--bamboo-green);
+      margin-bottom: 1rem;
+    }
+    .sidebar a {
+      display: block;
+      color: var(--text-secondary);
+      padding: 0.5rem 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .sidebar a:hover {
+      color: var(--bamboo-green);
+    }
+    .sidebar .sub-item {
+      padding-left: 1.5rem;
+      font-size: 0.9rem;
+    }
+    .content {
+      margin-left: 270px;
+      padding: 2rem;
+      max-width: 800px;
+      flex: 1;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--solana-purple);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--solana-purple);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--bamboo-green);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    p, li {
+      color: var(--text-primary);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    a {
+      color: var(--bamboo-green);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: var(--coral-pink);
+    }
+    footer {
+      background: var(--solana-dark);
+      padding: 1rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .social-icons a {
+      color: var(--text-primary);
+      margin: 0 0.75rem;
+      transition: color 0.3s ease;
+    }
+    .social-icons a:hover {
+      color: var(--bamboo-green);
+    }
+    .powered-by {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .powered-by a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--bamboo-green);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .powered-by a:hover {
+      color: var(--coral-pink);
+    }
+    .powered-by img {
+      width: 24px;
+      height: 24px;
+    }
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        padding: 1rem;
+      }
+      .content {
+        margin-left: 0;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <img src="panda-portrait.jpg" alt="LingLaunch Logo">
+      <a href="#introduction">Introduction</a>
+      <a href="#key-features" class="sub-item">Key Features</a>
+      <a href="#getting-started">Getting Started</a>
+      <a href="#connecting-wallet" class="sub-item">Connecting a Wallet</a>
+      <a href="#accessing-form" class="sub-item">Accessing the Form</a>
+      <a href="#creating-token">Creating a Token</a>
+      <a href="#filling-form" class="sub-item">Filling Out the Form</a>
+      <a href="#submitting-token" class="sub-item">Submitting the Token</a>
+      <a href="#troubleshooting">Troubleshooting</a>
+      <a href="#faqs" class="sub-item">FAQs</a>
+      <a href="#support">Support</a>
+      <a href="index.html">Back to Home</a>
+    </nav>
+
+    <section class="content">
+      <h1>LingLaunch Documentation</h1>
+      <p class="text-center text-lg mb-4">A Solana-Powered Token Launchpad | Version 1.0 | June 2025</p>
+
+      <h2 id="introduction">Introduction</h2>
+      <p>LingLaunch is a decentralized token launchpad built on the Solana blockchain, designed to enable creators to deploy their own tokens quickly and securely. Powered by <a href="https://meteora.ag" target="_blank">Meteora Aggregator</a>, LingLaunch offers seamless wallet integration and a user-friendly interface, leveraging Solana’s high-speed and low-cost transactions for efficient token launches.</p>
+
+      <h3 id="key-features">Key Features</h3>
+      <ul>
+        <li><strong>Fast Token Creation</strong>: Deploy Solana SPL tokens in minutes.</li>
+        <li><strong>Wallet Integration</strong>: Connect with popular Solana wallets like Phantom and Solflare.</li>
+        <li><strong>Social Integration</strong>: Promote your project via X, Telegram, and a dedicated website.</li>
+        <li><strong>Low Fees</strong>: Benefit from Solana’s cost-efficient blockchain, enhanced by Meteora Aggregator.</li>
+      </ul>
+
+      <h2 id="getting-started">Getting Started</h2>
+      <h3 id="connecting-wallet">Connecting a Solana Wallet</h3>
+      <p>To use LingLaunch, you need a Solana-compatible wallet:</p>
+      <ol>
+        <li>Download and install a wallet like <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a>.</li>
+        <li>Create or import a wallet and ensure it has sufficient SOL for transaction fees.</li>
+        <li>Click the <strong>Connect</strong> button on the LingLaunch website to link your wallet.</li>
+      </ol>
+
+      <h3 id="accessing-form">Accessing the Token Creation Form</h3>
+      <ol>
+        <li>Visit <a href="https://linglaunch.com" target="_blank">linglaunch.com</a>.</li>
+        <li>Ensure your wallet is connected.</li>
+        <li>Navigate to the <strong>Create Token</strong> section on the homepage.</li>
+      </ol>
+
+      <h2 id="creating-token">Creating a Token</h2>
+      <h3 id="filling-form">Filling Out the Form</h3>
+      <p>The token creation form requires the following fields:</p>
+      <ul>
+        <li><strong>Token Name</strong>: The name of your token (e.g., LingCoin).</li>
+        <li><strong>Symbol</strong>: A short ticker symbol (e.g., LING, max 10 characters).</li>
+        <li><strong>Total Supply</strong>: The total number of tokens to be created (e.g., 1,000,000,000).</li>
+        <li><strong>Initial Price</strong>: The starting price in SOL (e.g., 0.01).</li>
+        <li><strong>Description</strong>: A brief overview of your token’s purpose (optional, max 500 characters).</li>
+        <li><strong>Token Image</strong>: Upload a logo or image for your token (optional, PNG/JPG).</li>
+        <li><strong>X Profile</strong>: Link to your project’s X profile (e.g., <a href="https://x.com/LingDotFun" target="_blank">x.com/LingDotFun</a>).</li>
+        <li><strong>Telegram</strong>: Link to your Telegram group (e.g., <a href="https://t.me/linglaunch" target="_blank">t.me/linglaunch</a>).</li>
+        <li><strong>Website</strong>: Link to your project’s website (e.g., <a href="https://linglaunch.com" target="_blank">linglaunch.com</a>).</li>
+      </ul>
+
+      <h3 id="submitting-token">Submitting the Token</h3>
+      <ol>
+        <li>Review all entered details for accuracy.</li>
+        <li>Click the <strong>Launch Token</strong> button.</li>
+        <li>Approve the transaction in your connected Solana wallet.</li>
+        <li>Wait for the transaction to be confirmed on the Solana blockchain (typically a few seconds).</li>
+      </ol>
+      <p><strong>Note</strong>: Ensure your wallet has enough SOL to cover transaction fees (approximately 0.0001–0.001 SOL).</p>
+
+      <h2 id="troubleshooting">Troubleshooting</h2>
+      <h3 id="faqs">Frequently Asked Questions</h3>
+      <ul>
+        <li><strong>Why is my wallet not connecting?</strong>
+          <ul>
+            <li>Ensure your wallet extension is installed and active.</li>
+            <li>Check that you’re on the Solana mainnet.</li>
+            <li>Refresh the page and try again.</li>
+          </ul>
+        </li>
+        <li><strong>What happens after I create a token?</strong>
+          <ul>
+            <li>Your token is deployed as an SPL token on Solana, integrated with Meteora Aggregator for liquidity.</li>
+            <li>You’ll receive a token address for integration with exchanges or DeFi platforms.</li>
+          </ul>
+        </li>
+        <li><strong>Can I edit my token after creation?</strong>
+          <ul>
+            <li>Token metadata (name, symbol, supply) is immutable after creation.</li>
+            <li>Social links and descriptions can be updated via your project’s website or community channels.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h2 id="support">Support</h2>
+      <p>For assistance, contact the LingLaunch team via:</p>
+      <ul>
+        <li><strong>X</strong>: <a href="https://x.com/LingDotFun" target="_blank">x.com/LingDotFun</a></li>
+        <li><strong>Telegram</strong>: <a href="https://t.me/linglaunch" target="_blank">t.me/linglaunch</a></li>
+        <li><strong>Website</strong>: <a href="https://linglaunch.com" target="_blank">linglaunch.com</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>
+    <div class="social-icons">
+      <a href="https://x.com/LingDotFun" target="_blank"><i class="fab fa-x fa-lg"></i></a>
+      <a href="https://t.me/linglaunch" target="_blank"><i class="fab fa-telegram fa-lg"></i></a>
+      <a href="https://linglaunch.com" target="_blank"><i class="fas fa-globe fa-lg"></i></a>
+    </div>
+    <p class="mt-2">© 2025 LingLaunch. Powered by Solana.</p>
+    <div class="powered-by">
+      <a href="https://meteora.ag" target="_blank">
+        <img src="https://meteora.ag/favicon.ico" alt="Meteora Logo"> Powered by Meteora Aggregator
+      </a>
+    </div>
+  </footer>
+</body>
+</html>
