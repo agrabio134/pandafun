@@ -165,6 +165,18 @@
       right: 10px;
     }
 
+    .highlight-btn {
+      background: linear-gradient(45deg, var(--bamboo-green), var(--coral-pink));
+      box-shadow: 0 0 15px rgba(45, 212, 191, 0.7), 0 0 20px rgba(244, 114, 182, 0.5);
+      animation: glow-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes glow-pulse {
+      0% { box-shadow: 0 0 15px rgba(45, 212, 191, 0.7), 0 0 20px rgba(244, 114, 182, 0.5); }
+      50% { box-shadow: 0 0 25px rgba(45, 212, 191, 1), 0 0 30px rgba(244, 114, 182, 0.8); }
+      100% { box-shadow: 0 0 15px rgba(45, 212, 191, 0.7), 0 0 20px rgba(244, 114, 182, 0.5); }
+    }
+
     .nav-icon {
       font-size: clamp(0.75rem, 2vw, 0.875rem);
       color: var(--panda-black);
@@ -272,6 +284,8 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
+    
+
     #integrated-terminal::before {
       content: '🐼';
       position: absolute;
@@ -348,6 +362,63 @@
       background-attachment: scroll;
     }
 
+    .tweet-card {
+      background: var(--panda-white);
+      border: 2px solid var(--bamboo-green);
+      border-radius: 12px;
+      padding: clamp(1rem, 3vw, 1.5rem);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .tweet-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(135deg, var(--glow-soft), var(--panda-white));
+    }
+
+    .tweet-card a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .tweet-card .profile-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--bamboo-green);
+    }
+
+    .tweet-card .username {
+      font-weight: 600;
+      color: var(--panda-black);
+    }
+
+    .tweet-card .handle {
+      color: var(--panda-black);
+      opacity: 0.7;
+    }
+
+    .tweet-card .content {
+      margin-top: 0.5rem;
+      color: var(--panda-black);
+    }
+
+    .tweet-card .images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .tweet-card .images img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--bamboo-green);
+    }
+
     @media (min-width: 640px) {
       .text-8xl {
         font-size: clamp(2rem, 8vw, 2.5rem);
@@ -393,6 +464,11 @@
         font-size: clamp(1.875rem, 2vw, 1rem);
         width: clamp(32px, 8vw, 36px);
         height: clamp(32px, 8vw, 36px);
+      }
+
+      .tweet-card .profile-img {
+        width: 56px;
+        height: 56px;
       }
     }
 
@@ -462,6 +538,11 @@
         width: clamp(36px, 8vw, 44px);
         height: clamp(36px, 8vw, 44px);
       }
+
+      .tweet-card .profile-img {
+        width: 64px;
+        height: 64px;
+      }
     }
 
     @media (min-width: 1280px) {
@@ -508,6 +589,7 @@
     <a href="#grab" class="nav-icon"><i class="fa-solid fa-coins"></i></a>
     <a href="#vibe" class="nav-icon"><i class="fa-solid fa-leaf"></i></a>
     <a href="#crew" class="nav-icon"><i class="fa-solid fa-users"></i></a>
+    <a href="#community" class="nav-icon"><i class="fa-solid fa-comments"></i></a>
   </nav>
 
   <section id="home" class="relative flex items-center justify-center text-center scroll-parallax">
@@ -521,13 +603,71 @@
         <a href="https://x.com/lingdotfun" target="_blank" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
         <a href="https://t.me/pandaling" target="_blank" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
       </div>
-      <button class="panda-btn mt-6" onclick="window.location.href='linglaunch.html'">
+      <button class="panda-btn highlight-btn mt-6" onclick="window.location.href='launch.pandaling.fun/'">
         <i class="fa-solid fa-rocket fa-icon mr-2"></i> LING LAUNCH!
       </button>
     </div>
     <div class="absolute bottom-4 left-4 panda-emoji text-3xl panda-pulse">🐾</div>
     <div class="absolute top-4 right-4 panda-emoji text-3xl panda-pulse">🐾</div>
   </section>
+
+    <section id="community" class="py-8 sm:py-16 bg-[var(--panda-white)]">
+    <div class="container mx-auto text-center">
+      <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
+        <i class="fa-brands fa-x-twitter fa-icon mr-2 text-3xl panda-spin"></i> Community Buzz
+      </h2>
+      <div class="grid gap-4 sm:gap-6">
+        <a href="https://x.com/Cryptocitizen49/status/1965348991018930624" target="_blank" class="tweet-card fade-in">
+          <div class="flex items-center mb-2">
+            <img src="https://pbs.twimg.com/profile_images/1963539107776507904/4Oa8S2ZG_400x400.jpg" alt="Profile" class="profile-img">
+            <div class="ml-2">
+              <p class="username">The Count of Crypto</p>
+              <p class="handle">@Cryptocitizen49</p>
+            </div>
+          </div>
+          <p class="content text-2xl">$LING @LingDotFun 100x broken! Thanks to unbelievers who dumped $LING to 1k mcap. #Ling #lingapp #1000x</p>
+          <div class="images">
+            <img src="https://pbs.twimg.com/media/G0ZSU7WaMAAxT-I?format=jpg&name=4096x4096" alt="Post image 1">
+            <img src="https://pbs.twimg.com/media/G0ZSU7IbgAECCKT?format=jpg&name=medium" alt="Post image 2">
+          </div>
+        </a>
+        <a href="https://x.com/LingDotFun/status/1965056925873094824" target="_blank" class="tweet-card fade-in">
+          <div class="flex items-center mb-2">
+            <img src="https://pbs.twimg.com/profile_images/1927393618207080449/x49xwoHW_400x400.jpg" alt="Profile" class="profile-img">
+            <div class="ml-2">
+              <p class="username">$LING</p>
+              <p class="handle">@LingDotFun</p>
+            </div>
+          </div>
+          <p class="content text-2xl">We're moving forward with several upcoming partnerships and projects. As for FUDs, we understand the concerns of all panda $Ling fans. We're doing more than our best to create a revolution and a new wave in the space. There will be a lot of talk about $Ling & #LingApp soon. We won't be announcing a launch date, as we said in the previous tweet.</p>
+        </a>
+        <a href="https://x.com/LingDotFun/status/1965056925873094824" target="_blank" class="tweet-card fade-in">
+          <div class="flex items-center mb-2">
+            <img src="https://pbs.twimg.com/profile_images/1927393618207080449/x49xwoHW_400x400.jpg" alt="Profile" class="profile-img">
+            <div class="ml-2">
+              <p class="username">$LING</p>
+              <p class="handle">@LingDotFun</p>
+            </div>
+          </div>
+          <p class="content text-2xl">Dear holders $LING 🐼 In the last 48 hours we have launched a lot of tokens to test the smoothness of our platform #LingApp. Everything is running fast and without errors, which is one of the great achievements we have made. The next step is testing with Raydium, which is being worked on now. 🐼 Another huge news is that we are working on a dashboard for the benefit of the top holders $LING. As we promised before, the top holders will CLAIM on the reward every second. It will be available soon STAY TUNED $LING FANS</p>
+        </a>
+        <a href="https://x.com/Cryptocitizen49/status/1965348991018930624" target="_blank" class="tweet-card fade-in">
+          <div class="flex items-center mb-2">
+            <img src="https://pbs.twimg.com/profile_images/1963539107776507904/4Oa8S2ZG_400x400.jpg" alt="Profile" class="profile-img">
+            <div class="ml-2">
+              <p class="username">The Count of Crypto</p>
+              <p class="handle">@Cryptocitizen49</p>
+            </div>
+          </div>
+          <p class="content text-2xl">GM $LING @LingDotFun #Ling #linglaunch #lingapp</p>
+          <div class="images">
+            <img src="https://pbs.twimg.com/media/G0ctE0FaoAAhpMc?format=jpg&name=large" alt="Post image">
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
 
   <section id="grab" class="py-8 sm:py-16 bg-[var(--bamboo-green)] text-[var(--panda-white)]">
     <div class="container mx-auto text-center">
@@ -613,6 +753,7 @@
       </div>
     </div>
   </section>
+
 
   <footer class="bg-[var(--panda-white)] py-6 text-center panda-card mt-auto">
     <div class="container mx-auto">
