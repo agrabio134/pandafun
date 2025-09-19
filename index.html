@@ -4,321 +4,509 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PandaFun - Meme Coin Community</title>
+  <title>PandaFun - Next-Gen Meme Coin Community</title>
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ffffff'/%3E%3Ccircle cx='38' cy='38' r='12' fill='%23222222'/%3E%3Ccircle cx='62' cy='38' r='12' fill='%23222222'/%3E%3Cpath d='M50 65 Q45 70 50 75 Q55 70 50 65' fill='%23222222'/%3E%3Cpath d='M35 20 Q50 10 65 20' fill='none' stroke='%23222222' stroke-width='6'/%3E%3C/svg%3E">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <script src='https://terminal.jup.ag/main-v4.js'></script>
   <style>
     :root {
-      --panda-white: #ffffff;
-      --panda-black: #1a1a1a;
-      --bamboo-green: #2dd4bf;
-      --coral-pink: #f472b6;
-      --glow-soft: #a5f3fc;
+      --primary-bg: #0a0a0b;
+      --secondary-bg: #1a1a1f;
+      --accent-bg: #252530;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --text-primary: #ffffff;
+      --text-secondary: #a1a1aa;
+      --text-accent: #e4e4e7;
+      --neon-cyan: #00ffff;
+      --neon-purple: #8b5cf6;
+      --neon-pink: #ec4899;
+      --neon-green: #10b981;
+      --neon-orange: #f59e0b;
+      --gradient-primary: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+      --gradient-secondary: linear-gradient(135deg, var(--neon-pink), var(--neon-orange));
+      --gradient-tertiary: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+      --shadow-glow: 0 0 30px rgba(0, 255, 255, 0.3);
+      --shadow-glow-pink: 0 0 30px rgba(236, 72, 153, 0.3);
+      --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      background: linear-gradient(135deg, var(--panda-white) 0%, var(--glow-soft) 100%);
-      font-family: 'Poppins', sans-serif;
-      color: var(--panda-black);
+      background: var(--primary-bg);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
       overflow-x: hidden;
-      margin: 0;
-      cursor: default;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+      animation: backgroundShift 20s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Glass morphism effect */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-glow);
+      border-color: var(--neon-cyan);
+    }
+
+    /* Neon text effects */
+    .neon-text {
+      text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
+      animation: neonPulse 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes neonPulse {
+      from { text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor; }
+      to { text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor; }
+    }
+
+    /* Gradient buttons */
+    .cyber-btn {
+      background: var(--gradient-primary);
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      color: var(--primary-bg);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: var(--shadow-glow);
+    }
+
+    .cyber-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .cyber-btn:hover::before {
+      left: 100%;
+    }
+
+    .cyber-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+    }
+
+    .cyber-btn-secondary {
+      background: var(--gradient-secondary);
+      box-shadow: var(--shadow-glow-pink);
+    }
+
+    .cyber-btn-secondary:hover {
+      box-shadow: 0 0 40px rgba(236, 72, 153, 0.5);
+    }
+
+    /* Navigation */
+    .nav-container {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      display: flex;
+      gap: 0.5rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 25px;
+      padding: 0.5rem;
+    }
+
+    .nav-item {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-item::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+
+    .nav-item:hover::before {
+      width: 100%;
+      height: 100%;
+    }
+
+    .nav-item:hover {
+      color: var(--primary-bg);
+      transform: scale(1.1);
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* Floating elements */
+    .floating-panda {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 6s ease-in-out infinite;
+      opacity: 0.6;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .floating-panda:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+    .floating-panda:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
+    .floating-panda:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
+
+    /* Hero section */
+    .hero-section {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-    }
-
-    .panda-card {
-      background: var(--panda-white);
-      border: 2px solid var(--bamboo-green);
-      border-radius: 12px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      padding: clamp(0.75rem, 3vw, 1rem);
+      padding: 2rem;
     }
 
-    .panda-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    .hero-content {
+      max-width: 800px;
+      z-index: 10;
     }
 
-    .panda-card::before {
-      content: '🐼';
-      position: absolute;
-      top: -15px;
-      right: -15px;
-      font-size: clamp(30px, 8vw, 40px);
-      opacity: 0.05;
-      transform: rotate(20deg);
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 900;
+      background: var(--gradient-primary);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+      line-height: 1.1;
     }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-weight: 300;
     }
 
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .panda-bounce {
-      animation: panda-bounce 1s ease-in-out;
-    }
-
-    @keyframes panda-bounce {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-8px);
-      }
-    }
-
-    .panda-spin {
-      animation: panda-spin 3s linear infinite;
-    }
-
-    @keyframes panda-spin {
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    .panda-pulse {
-      animation: panda-pulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes panda-pulse {
-      0% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.1);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    .fa-icon,
-    .panda-emoji {
-      transition: color 0.3s ease;
-      display: inline-block;
-    }
-
-    .fa-icon:hover,
-    .panda-emoji:hover {
-      transform: scale(1.3);
-      color: var(--coral-pink);
-    }
-
-    .panda-emoji.panda-spin {
-      transition: none;
-    }
-
-    .scroll-parallax {
-      background-attachment: fixed;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .panda-btn {
-      background: var(--bamboo-green);
-      color: var(--panda-white);
-      padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 2.5vw, 1.5rem);
-      border-radius: 9999px;
-      font-size: clamp(0.875rem, 2vw, 1rem);
-      font-weight: 600;
+    /* CA Address */
+    .ca-container {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      padding: 1rem;
+      margin: 2rem 0;
+      cursor: pointer;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      touch-action: manipulation;
-      min-height: 44px;
     }
 
-    .panda-btn:hover {
-      background: var(--coral-pink);
-      transform: scale(1.05);
-    }
-
-    .panda-btn::after {
-      content: '🐼';
+    .ca-container::before {
+      content: '';
       position: absolute;
-      right: -30px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: clamp(0.875rem, 2vw, 1rem);
-      opacity: 0;
-      transition: opacity 0.3s ease, right 0.3s ease;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+      transition: left 0.5s;
     }
 
-    .panda-btn:hover::after {
-      opacity: 1;
-      right: 10px;
+    .ca-container:hover::before {
+      left: 100%;
     }
 
-    .highlight-btn {
-      background: linear-gradient(45deg, var(--bamboo-green), var(--coral-pink));
-      box-shadow: 0 0 15px rgba(45, 212, 191, 0.7), 0 0 20px rgba(244, 114, 182, 0.5);
-      animation: glow-pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes glow-pulse {
-      0% {
-        box-shadow: 0 0 15px rgba(45, 212, 191, 0.7), 0 0 20px rgba(244, 114, 182, 0.5);
-      }
-
-      50% {
-        box-shadow: 0 0 25px rgba(45, 212, 191, 1), 0 0 30px rgba(244, 114, 182, 0.8);
-      }
-
-      100% {
-        box-shadow: 0 0 15px rgba(45, 212, 191, 0.7), 0 0 20px rgba(244, 114, 182, 0.5);
-      }
-    }
-
-    .nav-icon {
-      font-size: clamp(0.75rem, 2vw, 0.875rem);
-      color: var(--panda-black);
-      background: var(--panda-white);
-      border: 2px solid var(--bamboo-green);
-      border-radius: 50%;
-      width: clamp(28px, 8vw, 32px);
-      height: clamp(28px, 8vw, 32px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      touch-action: manipulation;
-    }
-
-    .nav-icon:hover {
-      background: var(--coral-pink);
-      color: var(--panda-white);
-      transform: scale(1.1);
-    }
-
-    .nav-container {
-      display: flex;
-      border-radius: 50px;
-      justify-content: center;
-      gap: clamp(0.25rem, 1.5vw, 0.5rem);
-      background: rgba(255, 255, 255, 0.95);
-      padding: clamp(0.25rem, 1.5vw, 0.5rem);
-      border: 1px solid var(--bamboo-green);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      max-width: 100%;
-      flex-wrap: nowrap;
-      position: fixed;
-      top: 0.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-    }
-
-    #integrated-terminal .w-full.flex.items-center.justify-between>a {
-      visibility: hidden !important;
-    }
-
-    .panda-fun-branding {
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-    }
-
-    .panda-fun-branding .panda-emoji:hover {
-      transform: scale(1.3);
-      color: var(--coral-pink);
+    .ca-container:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: var(--shadow-glow);
     }
 
     .ca-text {
-      cursor: pointer;
-      font-size: clamp(0.75rem, 2vw, 0.875rem);
-      font-weight: 600;
-      color: var(--panda-white);
-      background: var(--bamboo-green);
-      padding: clamp(0.3rem, 1vw, 0.4rem) clamp(0.6rem, 1.5vw, 0.8rem);
-      border-radius: 8px;
-      transition: background 0.3s ease;
-      overflow-wrap: break-word;
+      font-family: 'Courier New', monospace;
+      font-size: clamp(0.8rem, 3vw, 1rem);
+      color: var(--neon-cyan);
       word-break: break-all;
-      display: inline-block;
-      touch-action: manipulation;
-      min-height: 44px;
     }
 
-    .ca-text:hover {
-      background: var(--coral-pink);
+    /* Sections */
+    .section {
+      padding: 5rem 2rem;
+      position: relative;
     }
 
-    .social-icon {
-      font-size: clamp(0.75rem, 2vw, 0.875rem);
-      color: var(--panda-black);
-      background: var(--panda-white);
-      border: 2px solid var(--bamboo-green);
-      border-radius: 50%;
-      width: clamp(38px, 8vw, 32px);
-      height: clamp(38px, 8vw, 32px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      touch-action: manipulation;
+    .section-title {
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: var(--gradient-secondary);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .social-icon:hover {
-      background: var(--coral-pink);
-      color: var(--panda-white);
-      transform: scale(1.1);
+    /* Grid layouts */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      background: var(--gradient-tertiary);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .feature-description {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Jupiter Terminal */
+    .terminal-container {
+      max-width: 500px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-glow);
+      border: 1px solid var(--neon-cyan);
     }
 
     #integrated-terminal {
       width: 100%;
-      max-width: 400px;
-      height: 568px;
-      margin: 0 auto;
-      border: 2px solid var(--bamboo-green);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      height: 600px;
+      background: var(--secondary-bg);
     }
 
+    /* Tweet cards */
+    .tweet-grid {
+      display: grid;
+      gap: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
+    .tweet-card {
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
 
-    #integrated-terminal::before {
-      content: '🐼';
+    .tweet-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .tweet-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid var(--neon-cyan);
+    }
+
+    .tweet-user {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .tweet-handle {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .tweet-content {
+      color: var(--text-accent);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .tweet-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .tweet-images img {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+    }
+
+    /* Social icons */
+    .social-grid {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .social-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-icon::before {
+      content: '';
       position: absolute;
-      top: -15px;
-      right: -15px;
-      font-size: clamp(30px, 8vw, 40px);
-      opacity: 0.05;
-      transform: rotate(20deg);
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+
+    .social-icon:hover::before {
+      width: 120%;
+      height: 120%;
+    }
+
+    .social-icon:hover {
+      color: var(--primary-bg);
+      transform: scale(1.1);
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--secondary-bg);
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--glass-border);
+      margin-top: 5rem;
+    }
+
+    /* Chart container */
+    .chart-container {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 2rem auto;
+      max-width: 800px;
     }
 
     #dexscreener-embed {
       position: relative;
       width: 100%;
-      padding-bottom: 125%;
-    }
-
-    @media (min-width: 1400px) {
-      #dexscreener-embed {
-        padding-bottom: 65%;
-      }
+      padding-bottom: 60%;
     }
 
     #dexscreener-embed iframe {
@@ -330,616 +518,391 @@
       border: 0;
     }
 
-    h1,
-    h2,
-    h3,
-    p,
-    li {
-      font-size: clamp(0.875rem, 3.5vw, 1rem);
-    }
-
-    .text-8xl {
-      font-size: clamp(1.5rem, 6vw, 2rem);
-    }
-
-    .text-6xl {
-      font-size: clamp(1.25rem, 5vw, 1.75rem);
-    }
-
-    .text-4xl {
-      font-size: clamp(1rem, 3.5vw, 1.25rem);
-    }
-
-    .text-3xl {
-      font-size: clamp(0.875rem, 3vw, 1rem);
-    }
-
-    .text-2xl {
-      font-size: clamp(0.75rem, 2.5vw, 0.875rem);
-    }
-
-    .container {
-      padding-left: clamp(0.5rem, 3vw, 1rem);
-      padding-right: clamp(0.5rem, 3vw, 1rem);
-    }
-
-    #home {
-      min-height: 100vh;
-      padding: 3rem 0.5rem;
-      background-image: url('panda-portrait.jpg');
-      background-size: cover;
-      background-position: center;
-    }
-
-    .scroll-parallax {
-      background-attachment: scroll;
-    }
-
-    .tweet-card {
-      background: var(--panda-white);
-      border: 2px solid var(--bamboo-green);
-      border-radius: 12px;
-      padding: clamp(1rem, 3vw, 1.5rem);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .tweet-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      background: linear-gradient(135deg, var(--glow-soft), var(--panda-white));
-    }
-
-    .tweet-card a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .tweet-card .profile-img {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: 2px solid var(--bamboo-green);
-    }
-
-    .tweet-card .username {
-      font-weight: 600;
-      color: var(--panda-black);
-    }
-
-    .tweet-card .handle {
-      color: var(--panda-black);
-      opacity: 0.7;
-    }
-
-    .tweet-card .content {
-      margin-top: 0.5rem;
-      color: var(--panda-black);
-    }
-
-    .tweet-card .images {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-
-    .tweet-card .images img {
-      max-width: 100%;
-      border-radius: 8px;
-      border: 1px solid var(--bamboo-green);
-    }
-
-    @media (min-width: 640px) {
-      .text-8xl {
-        font-size: clamp(2rem, 8vw, 2.5rem);
-      }
-
-      .text-6xl {
-        font-size: clamp(1.5rem, 6vw, 2rem);
-      }
-
-      .text-4xl {
-        font-size: clamp(1.25rem, 4vw, 1.5rem);
-      }
-
-      .text-3xl {
-        font-size: clamp(1rem, 3.5vw, 1.25rem);
-      }
-
-      .text-2xl {
-        font-size: clamp(0.875rem, 3vw, 1rem);
-      }
-
-      #home {
-        background-image: url('panda-portrait.jpg');
-      }
-
-      .panda-card {
-        padding: clamp(1rem, 3vw, 1.5rem);
-      }
-
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
       .nav-container {
-        gap: clamp(0.5rem, 1.5vw, 0.75rem);
-        padding: clamp(0.5rem, 1.5vw, 0.75rem);
-        border-radius: 50px;
+        top: 0.5rem;
+        right: 0.5rem;
+        gap: 0.25rem;
+        padding: 0.25rem;
       }
 
-      .nav-icon {
-        font-size: clamp(1rem, 2vw, 1rem);
-        width: clamp(42px, 10vw, 46px);
-        height: clamp(42px, 10vw, 46px);
+      .nav-item {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
       }
 
-      .social-icon {
-        font-size: clamp(1.875rem, 2vw, 1rem);
-        width: clamp(32px, 8vw, 36px);
-        height: clamp(32px, 8vw, 36px);
+      .section {
+        padding: 3rem 1rem;
       }
 
-      .tweet-card .profile-img {
-        width: 56px;
-        height: 56px;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .text-8xl {
-        font-size: clamp(2.5rem, 10vw, 3.5rem);
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
       }
 
-      .text-6xl {
-        font-size: clamp(2rem, 8vw, 2.5rem);
+      .hero-section {
+        padding: 1rem;
       }
 
-      .text-4xl {
-        font-size: clamp(1.5rem, 5vw, 2rem);
-      }
-
-      .text-3xl {
-        font-size: clamp(1.25rem, 4vw, 1.5rem);
-      }
-
-      .text-2xl {
-        font-size: clamp(1rem, 3.5vw, 1.25rem);
-      }
-
-      #home {
-        background-image: url('panda-portrait.jpg');
-        background-attachment: fixed;
-      }
-
-      .container {
-        max-width: 1280px;
-      }
-
-      .grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      }
-
-      .panda-card {
-        padding: clamp(1.5rem, 3vw, 2rem);
-      }
-
-      #grab .panda-card {
-        max-width: 1024px;
-      }
-
-      #grab #integrated-terminal {
-        max-width: 1024px;
-      }
-
-      .nav-container {
-        border-radius: 50px 0 0 50px;
-        left: auto;
-        right: 0;
-        transform: none;
-        padding: clamp(1.75rem, 2vw, 1rem);
-        gap: clamp(0.75rem, 2vw, 1rem);
-      }
-
-      .nav-icon {
-        font-size: clamp(1.25rem, 2vw, 1.5rem);
-        width: clamp(47px, 12vw, 48px);
-        height: clamp(47px, 12vw, 48px);
-      }
-
-      .social-icon {
-        font-size: clamp(1rem, 2.5vw, 1.25rem);
-        width: clamp(36px, 8vw, 44px);
-        height: clamp(36px, 8vw, 44px);
-      }
-
-      .tweet-card .profile-img {
-        width: 64px;
-        height: 64px;
+      .ca-text {
+        font-size: 0.7rem;
       }
     }
 
-    @media (min-width: 1280px) {
-      .text-8xl {
-        font-size: clamp(3rem, 12vw, 4rem);
-      }
+    /* Animation delays */
+    .animate-delay-1 { animation-delay: 0.1s; }
+    .animate-delay-2 { animation-delay: 0.2s; }
+    .animate-delay-3 { animation-delay: 0.3s; }
+    .animate-delay-4 { animation-delay: 0.4s; }
 
-      .text-6xl {
-        font-size: clamp(2.5rem, 10vw, 3rem);
-      }
-
-      .text-4xl {
-        font-size: clamp(1.75rem, 6vw, 2.25rem);
-      }
-
-      .text-3xl {
-        font-size: clamp(1.5rem, 5vw, 1.75rem);
-      }
-
-      .text-2xl {
-        font-size: clamp(1.25rem, 4vw, 1.5rem);
-      }
-
-      .panda-card {
-        padding: clamp(2rem, 3vw, 2.5rem);
-      }
+    /* Fade in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
     }
 
-    .token-info-list li {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    .token-info-list i {
-      font-size: clamp(1rem, 3vw, 1.25rem);
+    /* Panda emoji animations */
+    .panda-float {
+      animation: pandaFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes pandaFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+    }
+
+    .panda-bounce {
+      animation: pandaBounce 1s ease-in-out;
+    }
+
+    @keyframes pandaBounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
     }
   </style>
 </head>
 
-<body class="min-h-screen flex flex-col">
+<body>
+  <!-- Floating panda decorations -->
+  <div class="floating-panda">🐼</div>
+  <div class="floating-panda">🎋</div>
+  <div class="floating-panda">✨</div>
+
+  <!-- Navigation -->
   <nav class="nav-container">
-    <a href="#home" class="nav-icon"><i class="fa-solid fa-home"></i></a>
-    <a href="#grab" class="nav-icon"><i class="fa-solid fa-coins"></i></a>
-    <a href="#vibe" class="nav-icon"><i class="fa-solid fa-leaf"></i></a>
-    <a href="#crew" class="nav-icon"><i class="fa-solid fa-users"></i></a>
-    <a href="#community" class="nav-icon"><i class="fa-solid fa-comments"></i></a>
+    <a href="#home" class="nav-item" title="Home"><i class="fas fa-home"></i></a>
+    <a href="#features" class="nav-item" title="Features"><i class="fas fa-star"></i></a>
+    <a href="#trade" class="nav-item" title="Trade"><i class="fas fa-exchange-alt"></i></a>
+    <a href="#community" class="nav-item" title="Community"><i class="fas fa-users"></i></a>
+    <a href="#tokenomics" class="nav-item" title="Tokenomics"><i class="fas fa-coins"></i></a>
   </nav>
 
-  <section id="home" class="relative flex items-center justify-center text-center scroll-parallax">
-    <div class="panda-card bg-opacity-95 bg-[var(--panda-white)] rounded-2xl max-w-[90%] sm:max-w-3xl">
-      <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-4 flex items-center justify-center flex-wrap">
-        PANDA LING FUN <span class="panda-emoji ml-2 text-4xl panda-bounce">🐼</span>
-      </h2>
-      <p class="text-4xl text-[var(--panda-black)] mb-6">Launch your token with LING-Launch and enjoy many features!!
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="hero-content fade-in">
+      <h1 class="hero-title ">
+         PANDA <span class="neon-text">$LING</span> FUN 🐼
+      </h1>
+      <p class="hero-subtitle">
+        Next-generation meme coin ecosystem powered by LING-Launch
       </p>
-      <span class="ca-text" onclick="copyCAText()">CA: DaUq6WNeLkwjdnWFk3xC6NVXpTXfLotVnUCd4qL9Ling</span>
-      <div class="flex justify-center gap-4 mt-6 flex-wrap">
-        <a href="https://x.com/lingdotfun" target="_blank" class="social-icon"><i
-            class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://t.me/pandaling" target="_blank" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
+      
+      <div class="ca-container" onclick="copyCAText()">
+        <div class="ca-text">
+          CA: DaUq6WNeLkwjdnWFk3xC6NVXpTXfLotVnUCd4qL9Ling
+        </div>
       </div>
-      <button class="panda-btn highlight-btn mt-6" onclick="window.location.href='https://launch.pandaling.fun/'"> <i
-          class="fa-solid fa-rocket fa-icon mr-2"></i> LING LAUNCH!
-      </button>
-    </div>
-    <div class="absolute bottom-4 left-4 panda-emoji text-3xl panda-pulse">🐾</div>
-    <div class="absolute top-4 right-4 panda-emoji text-3xl panda-pulse">🐾</div>
-  </section>
 
-  <section id="community" class="py-8 sm:py-16 bg-[var(--panda-white)]">
-    <div class="container mx-auto text-center">
-      <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
-        <i class="fa-brands fa-x-twitter fa-icon mr-2 text-3xl panda-spin"></i> Community Buzz
-      </h2>
-      <div class="grid gap-4 sm:gap-6">
-        <a href="https://x.com/Cryptocitizen49/status/1965348991018930624" target="_blank" class="tweet-card fade-in">
-          <div class="flex items-center mb-2">
-            <img src="https://pbs.twimg.com/profile_images/1963539107776507904/4Oa8S2ZG_400x400.jpg" alt="Profile"
-              class="profile-img">
-            <div class="ml-2">
-              <p class="username">The Count of Crypto</p>
-              <p class="handle">@Cryptocitizen49</p>
-            </div>
-          </div>
-          <p class="content text-2xl">$LING @LingDotFun 100x broken! Thanks to unbelievers who dumped $LING to 1k mcap.
-            #Ling #lingapp #1000x</p>
-          <div class="images">
-            <img src="https://pbs.twimg.com/media/G0ZSU7WaMAAxT-I?format=jpg&name=4096x4096" alt="Post image 1">
-            <img src="https://pbs.twimg.com/media/G0ZSU7IbgAECCKT?format=jpg&name=medium" alt="Post image 2">
-          </div>
+      <div class="social-grid">
+        <a href="https://x.com/lingdotfun" target="_blank" class="social-icon">
+          <i class="fab fa-x-twitter"></i>
         </a>
-        <a href="https://x.com/LingDotFun/status/1965056925873094824" target="_blank" class="tweet-card fade-in">
-          <div class="flex items-center mb-2">
-            <img src="https://pbs.twimg.com/profile_images/1927393618207080449/x49xwoHW_400x400.jpg" alt="Profile"
-              class="profile-img">
-            <div class="ml-2">
-              <p class="username">$LING</p>
-              <p class="handle">@LingDotFun</p>
-            </div>
-          </div>
-          <p class="content text-2xl">We're moving forward with several upcoming partnerships and projects. As for FUDs,
-            we understand the concerns of all panda $Ling fans. We're doing more than our best to create a revolution
-            and a new wave in the space. There will be a lot of talk about $Ling & #LingApp soon. We won't be announcing
-            a launch date, as we said in the previous tweet.</p>
-        </a>
-        <a href="https://x.com/LingDotFun/status/1965056925873094824" target="_blank" class="tweet-card fade-in">
-          <div class="flex items-center mb-2">
-            <img src="https://pbs.twimg.com/profile_images/1927393618207080449/x49xwoHW_400x400.jpg" alt="Profile"
-              class="profile-img">
-            <div class="ml-2">
-              <p class="username">$LING</p>
-              <p class="handle">@LingDotFun</p>
-            </div>
-          </div>
-          <p class="content text-2xl">Dear holders $LING 🐼 In the last 48 hours we have launched a lot of tokens to
-            test the smoothness of our platform #LingApp. Everything is running fast and without errors, which is one of
-            the great achievements we have made. The next step is testing with Raydium, which is being worked on now. 🐼
-            Another huge news is that we are working on a dashboard for the benefit of the top holders $LING. As we
-            promised before, the top holders will CLAIM on the reward every second. It will be available soon STAY TUNED
-            $LING FANS</p>
-        </a>
-        <a href="https://x.com/Cryptocitizen49/status/1965348991018930624" target="_blank" class="tweet-card fade-in">
-          <div class="flex items-center mb-2">
-            <img src="https://pbs.twimg.com/profile_images/1963539107776507904/4Oa8S2ZG_400x400.jpg" alt="Profile"
-              class="profile-img">
-            <div class="ml-2">
-              <p class="username">The Count of Crypto</p>
-              <p class="handle">@Cryptocitizen49</p>
-            </div>
-          </div>
-          <p class="content text-2xl">GM $LING @LingDotFun #Ling #linglaunch #lingapp</p>
-          <div class="images">
-            <img src="https://pbs.twimg.com/media/G0ctE0FaoAAhpMc?format=jpg&name=large" alt="Post image">
-          </div>
+        <a href="https://t.me/pandaling" target="_blank" class="social-icon">
+          <i class="fab fa-telegram"></i>
         </a>
       </div>
+
+      <a href="https://launch.pandaling.fun/" class="cyber-btn cyber-btn-secondary">
+        <i class="fas fa-rocket"></i> LING LAUNCH
+      </a>
     </div>
   </section>
 
+  <!-- Features Section -->
+  <section id="features" class="section">
+    <h2 class="section-title">Why Choose PandaFun?</h2>
+    <div class="feature-grid">
+      <div class="glass-card feature-card fade-in animate-delay-1">
+        <i class="fas fa-rocket feature-icon"></i>
+        <h3 class="feature-title">Launch & Earn</h3>
+        <p class="feature-description">
+          Launch your token with LING-Launch: Developers earn 30% of fees, with 70% supporting liquidity pools for sustainable growth.
+        </p>
+      </div>
+      
+      <div class="glass-card feature-card fade-in animate-delay-2">
+        <i class="fas fa-coins feature-icon"></i>
+        <h3 class="feature-title">Smart Tokenomics</h3>
+        <p class="feature-description">
+          Tokens launched via LING-Launch end with 'LING', with fees continuously buying and burning $LING tokens for deflationary mechanics.
+        </p>
+      </div>
+      
+      <div class="glass-card feature-card fade-in animate-delay-3">
+        <i class="fas fa-gift feature-icon"></i>
+        <h3 class="feature-title">Weekly Rewards</h3>
+        <p class="feature-description">
+          Stake $LING tokens for exclusive access to weekly prize pools and participate in our vibrant community ecosystem.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <section id="grab" class="py-8 sm:py-16 bg-[var(--bamboo-green)] text-[var(--panda-white)]">
-    <div class="container mx-auto text-center">
-      <h2 class="text-6xl font-bold mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
-        <i class="fa-solid fa-coins fa-icon mr-2 text-3xl panda-spin"></i> Snag PandaFun
-      </h2>
-      <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto">
-        <p class="text-4xl mb-4" style="color: #1a1a1a;">Grab coins in 3 panda-tastic steps! <span
-            class="panda-emoji text-3xl">🐼</span></p>
-        <ol class="list-decimal list-inside text-left text-2xl">
-          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-wallet fa-icon mr-2 panda-pulse"></i> Connect
-            your Solana wallet.</li>
-          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-exchange-alt fa-icon mr-2 panda-pulse"></i>
-            Select tokens to swap.</li>
-          <li class="mb-3" style="color: #1a1a1a;"><i class="fa-solid fa-check-circle fa-icon mr-2 panda-pulse"></i>
-            Confirm and snag your PandaFun coins!</li>
-        </ol>
-        <div id="integrated-terminal" class="mt-4 relative"
-          style="width: 100%; max-width: 600px; height: 558px; background-color: #1a1a1a;">
-          <div class="panda-fun-branding absolute top-2 left-2 flex items-center z-10">
-            <span class="panda-emoji text-2xl mr-1">🐼</span>
-            <span class="text-lg font-bold" style="color: #ffffff;">PandaFun</span>
+  <!-- Trading Section -->
+  <section id="trade" class="section">
+    <h2 class="section-title">Trade PandaFun</h2>
+    <div class="glass-card fade-in" style="max-width: 600px; margin: 0 auto; padding: 2rem;">
+      <h3 style="text-align: center; margin-bottom: 2rem; color: var(--text-primary);">
+        Get $LING in 3 Easy Steps <span class="panda-float">🐼</span>
+      </h3>
+      
+      <div style="margin-bottom: 2rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; color: var(--text-accent);">
+          <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: var(--primary-bg); font-weight: bold;">1</div>
+          <span>Connect your Solana wallet</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; color: var(--text-accent);">
+          <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: var(--primary-bg); font-weight: bold;">2</div>
+          <span>Select tokens to swap</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; color: var(--text-accent);">
+          <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: var(--primary-bg); font-weight: bold;">3</div>
+          <span>Confirm and get your PandaFun coins!</span>
+        </div>
+      </div>
+
+      <div class="terminal-container">
+        <div id="integrated-terminal"></div>
+      </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="chart-container fade-in">
+      <h3 style="text-align: center; padding: 1rem; color: var(--text-primary);">
+        $LING Price Chart <span class="panda-float">📈</span>
+      </h3>
+      <div id="dexscreener-embed">
+        <iframe src="https://dexscreener.com/solana/F2u6T5JungbpDpjuwUGVniJQDgaFbF1HzeozqYRjJFws?embed=1&loadChartSettings=0&trades=0&tabs=0&info=0&chartLeftToolbar=0&chartDefaultOnMobile=1&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Section -->
+  <section id="community" class="section">
+    <h2 class="section-title">Community Buzz</h2>
+    <div class="tweet-grid">
+      <a href="https://x.com/Cryptocitizen49/status/1965348991018930624" target="_blank" class="glass-card tweet-card fade-in animate-delay-1">
+        <div class="tweet-header">
+          <img src="https://pbs.twimg.com/profile_images/1963539107776507904/4Oa8S2ZG_400x400.jpg" alt="Profile" class="tweet-avatar">
+          <div>
+            <div class="tweet-user">The Count of Crypto</div>
+            <div class="tweet-handle">@Cryptocitizen49</div>
           </div>
         </div>
-        <div class="panda-card mt-6 max-w-[90%] sm:max-w-lg mx-auto">
-          <h3 class="text-4xl font-bold text-[var(--panda-black)] mb-4">$LING Trend <span
-              class="panda-emoji text-3xl">📈</span></h3>
-          <style>
-            #dexscreener-embed {
-              position: relative;
-              width: 100%;
-              padding-bottom: 125%;
-            }
+        <div class="tweet-content">
+          $LING @LingDotFun 100x broken! Thanks to unbelievers who dumped $LING to 1k mcap. #Ling #lingapp #1000x
+        </div>
+        <div class="tweet-images">
+          <img src="https://pbs.twimg.com/media/G0ZSU7WaMAAxT-I?format=jpg&name=4096x4096" alt="Post image 1">
+          <img src="https://pbs.twimg.com/media/G0ZSU7IbgAECCKT?format=jpg&name=medium" alt="Post image 2">
+        </div>
+      </a>
 
-            @media(min-width:1400px) {
-              #dexscreener-embed {
-                padding-bottom: 65%;
-              }
-            }
+      <a href="https://x.com/LingDotFun/status/1965056925873094824" target="_blank" class="glass-card tweet-card fade-in animate-delay-2">
+        <div class="tweet-header">
+          <img src="https://pbs.twimg.com/profile_images/1927393618207080449/x49xwoHW_400x400.jpg" alt="Profile" class="tweet-avatar">
+          <div>
+            <div class="tweet-user">$LING</div>
+            <div class="tweet-handle">@LingDotFun</div>
+          </div>
+        </div>
+        <div class="tweet-content">
+          We're moving forward with several upcoming partnerships and projects. As for FUDs, we understand the concerns of all panda $Ling fans. We're doing more than our best to create a revolution and a new wave in the space.
+        </div>
+      </a>
 
-            #dexscreener-embed iframe {
-              position: absolute;
-              width: 100%;
-              height: 100%;
-              top: 0;
-              left: 0;
-              border: 0;
-            }
-          </style>
-          <div id="dexscreener-embed"><iframe
-              src="https://dexscreener.com/solana/F2u6T5JungbpDpjuwUGVniJQDgaFbF1HzeozqYRjJFws?embed=1&loadChartSettings=0&trades=0&tabs=0&info=0&chartLeftToolbar=0&chartDefaultOnMobile=1&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"></iframe>
+      <a href="https://x.com/Cryptocitizen49/status/1965348991018930624" target="_blank" class="glass-card tweet-card fade-in animate-delay-3">
+        <div class="tweet-header">
+          <img src="https://pbs.twimg.com/profile_images/1963539107776507904/4Oa8S2ZG_400x400.jpg" alt="Profile" class="tweet-avatar">
+          <div>
+            <div class="tweet-user">The Count of Crypto</div>
+            <div class="tweet-handle">@Cryptocitizen49</div>
+          </div>
+        </div>
+        <div class="tweet-content">
+          GM $LING @LingDotFun #Ling #linglaunch #lingapp
+        </div>
+        <div class="tweet-images">
+          <img src="https://pbs.twimg.com/media/G0ctE0FaoAAhpMc?format=jpg&name=large" alt="Post image">
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Tokenomics Section -->
+  <section id="tokenomics" class="section">
+    <h2 class="section-title">$LING Tokenomics</h2>
+    <div class="glass-card fade-in" style="max-width: 600px; margin: 0 auto; padding: 2rem; text-align: center;">
+      <h3 style="margin-bottom: 2rem; color: var(--text-primary);">
+        Token Information <span class="panda-float">🐼</span>
+      </h3>
+      
+      <div style="display: grid; gap: 1.5rem; text-align: left;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <i class="fas fa-coins" style="color: var(--neon-cyan); font-size: 1.5rem;"></i>
+          <div>
+            <div style="color: var(--text-primary); font-weight: 600;">Token Name</div>
+            <div style="color: var(--text-secondary);">Panda Ling Fun ($LING)</div>
+          </div>
+        </div>
+        
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <i class="fas fa-rocket" style="color: var(--neon-purple); font-size: 1.5rem;"></i>
+          <div>
+            <div style="color: var(--text-primary); font-weight: 600;">Platform</div>
+            <div style="color: var(--text-secondary);">LING-Launch Ecosystem</div>
+          </div>
+        </div>
+        
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <i class="fas fa-layer-group" style="color: var(--neon-green); font-size: 1.5rem;"></i>
+          <div>
+            <div style="color: var(--text-primary); font-weight: 600;">Maximum Supply</div>
+            <div style="color: var(--text-secondary);">100,000 LING</div>
+          </div>
+        </div>
+        
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <i class="fas fa-fire" style="color: var(--neon-orange); font-size: 1.5rem;"></i>
+          <div>
+            <div style="color: var(--text-primary); font-weight: 600;">Burn Mechanism</div>
+            <div style="color: var(--text-secondary);">Continuous token burns from platform fees</div>
           </div>
         </div>
       </div>
-  </section>
-
-  <section id="vibe" class="py-8 sm:py-16 bg-[var(--panda-white)]">
-    <div class="container mx-auto text-center">
-      <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
-        <i class="fa-solid fa-star fa-icon mr-2 text-3xl panda-spin"></i> Why PandaFun?
-      </h2>
-      <img src="banner.jpg" alt="PandaFun Banner" class="w-full max-w-3xl mx-auto mb-6 rounded-2xl">
-      <div class="grid gap-4 sm:gap-6">
-        <div class="panda-card fade-in">
-          <i class="fa-solid fa-rocket fa-icon text-4xl mb-3 panda-spin"></i>
-          <h3 class="text-4xl font-bold text-[var(--panda-black)] mb-2">Launch & Earn</h3>
-          <p class="text-2xl text-[var(--panda-black)]">Launch your token with LING-Launch: Devs earn 30% of fees, with
-            70% supporting liquidity pools!</p>
-        </div>
-        <div class="panda-card fade-in">
-          <i class="fa-solid fa-coins fa-icon text-4xl mb-3 panda-spin"></i>
-          <h3 class="text-4xl font-bold text-[var(--panda-black)] mb-2">$LING Tokenomics</h3>
-          <p class="text-2xl text-[var(--panda-black)]">Tokens launched via LING-Launch end with 'LING', with fees used
-            to buy and burn $LING continuously!</p>
-        </div>
-        <div class="panda-card fade-in">
-          <i class="fa-solid fa-gift fa-icon text-4xl mb-3 panda-spin"></i>
-          <h3 class="text-4xl font-bold text-[var(--panda-black)] mb-2">Weekly Rewards</h3>
-          <p class="text-2xl text-[var(--panda-black)]">Stake $LING for a chance to win exciting weekly prizes in our
-            vibrant community!</p>
-        </div>
-      </div>
     </div>
   </section>
 
-  <section id="token-info" class="py-8 sm:py-16 bg-[var(--panda-white)]">
-    <div class="container mx-auto text-center">
-      <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
-        <i class="fa-solid fa-coins fa-icon mr-2 text-3xl panda-spin"></i> $LING Token
-      </h2>
-      <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto fade-in">
-        <p class="text-4xl text-[var(--panda-black)] mb-4">All about Panda Ling Fun! <span
-            class="panda-emoji text-3xl">🐼</span></p>
-        <ul class="token-info-list text-left text-2xl text-[var(--panda-black)]">
-          <li class="mb-3"><i class="fa-solid fa-coins fa-icon panda-pulse"></i> <strong>Token Name:</strong> Panda Ling
-            Fun ($LING)</li>
-          <li class="mb-3"><i class="fa-solid fa-rocket fa-icon panda-pulse"></i> <strong>Platform:</strong> LingLaunch
-          </li>
-          <li class="mb-3"><i class="fa-solid fa-boxes fa-icon panda-pulse"></i> <strong>Maximum Supply:</strong>
-            100,000 tokens</li>
-        </ul>
+  <!-- Footer -->
+  <footer class="footer">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+        <span class="panda-float" style="font-size: 2rem;">🐼</span>
+        <span style="color: var(--text-primary); font-weight: 600; font-size: 1.2rem;">PandaFun</span>
       </div>
-    </div>
-  </section>
-
-  <section id="crew" class="py-8 sm:py-16 bg-[var(--panda-white)]">
-    <div class="container mx-auto text-center">
-      <h2 class="text-6xl font-bold text-[var(--panda-black)] mb-6 sm:mb-8 flex items-center justify-center flex-wrap">
-        <i class="fa-solid fa-users fa-icon mr-2 text-3xl panda-spin"></i> PandaFun Squad
-      </h2>
-      <div class="panda-card max-w-[90%] sm:max-w-lg mx-auto fade-in">
-        <p class="text-4xl text-[var(--panda-black)] mb-4">Join the wildest panda crew! <span
-            class="panda-emoji text-3xl">🐼</span></p>
-        <div class="flex justify-center gap-4 flex-wrap">
-          <a href="https://x.com/lingdotfun" target="_blank" class="text-3xl fa-icon panda-bounce"><i
-              class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://t.me/pandaling" target="_blank" class="text-3xl fa-icon panda-bounce"><i
-              class="fa-brands fa-telegram"></i></a>
-        </div>
+      <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+        © 2025 PandaFun. Built for the next generation of meme coin enthusiasts.
+      </p>
+      <div class="social-grid" style="justify-content: center;">
+        <a href="https://x.com/lingdotfun" target="_blank" class="social-icon">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="https://t.me/pandaling" target="_blank" class="social-icon">
+          <i class="fab fa-telegram"></i>
+        </a>
       </div>
-    </div>
-  </section>
-
-
-  <footer class="bg-[var(--panda-white)] py-6 text-center panda-card mt-auto">
-    <div class="container mx-auto">
-      <p class="text-3xl text-[var(--panda-black)]"><span class="panda-emoji mr-2 text-3xl panda-bounce">🐼</span> ©
-        2025 PandaFun. Built for the Panda Community!</p>
     </div>
   </footer>
 
   <script>
-    function pandaLog(message) {
+    // Utility functions
+    function log(message) {
       console.log(`🐼 PandaFun: ${message}`);
     }
 
-    function generatePandaVibe(id) {
-      return `Panda Vibe #${id}: Ready to roll!`;
-    }
-
-    function createPandaConfetti(count) {
-      const confetti = [];
-      for (let i = 0; i < count; i++) {
-        confetti.push(`Confetti Panda ${i}: 🎉🐼`);
-      }
-      return confetti;
-    }
-
-    function pandaBounceEffect(element) {
-      element.classList.add('panda-bounce');
-      setTimeout(() => { element.classList.remove('panda-bounce'); }, 1000);
-    }
-
-    function pandaSpinEffect(element) {
-      element.classList.add('panda-spin');
-      setTimeout(() => { element.classList.remove('panda-spin'); }, 3000);
-    }
-
-    function pandaPulseEffect(element) {
-      element.classList.add('panda-pulse');
-      setTimeout(() => { element.classList.remove('panda-pulse'); }, 1500);
-    }
-
+    // Copy CA address to clipboard
     function copyCAText() {
       const caText = 'DaUq6WNeLkwjdnWFk3xC6NVXpTXfLotVnUCd4qL9Ling';
       navigator.clipboard.writeText(caText).then(() => {
-        pandaLog('DaUq6WNeLkwjdnWFk3xC6NVXpTXfLotVnUCd4qL9Ling copied to clipboard!');
-        alert('Copied: ' + caText);
+        log('CA address copied to clipboard!');
+        
+        // Show success feedback
+        const container = document.querySelector('.ca-container');
+        const originalText = container.innerHTML;
+        container.innerHTML = '<div class="ca-text" style="color: var(--neon-green);">✓ Copied to clipboard!</div>';
+        
+        setTimeout(() => {
+          container.innerHTML = originalText;
+        }, 2000);
       }).catch(err => {
-        pandaLog('Failed to copy CA text: ' + err);
+        log('Failed to copy CA text: ' + err);
+        alert('Failed to copy address. Please copy manually.');
       });
     }
 
+    // Smooth scrolling for navigation
     function initSmoothScroll() {
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-          });
-          pandaLog('Smooth scrolling to ' + this.getAttribute('href'));
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            log('Smooth scrolling to ' + this.getAttribute('href'));
+          }
         });
       });
     }
 
-    function initHoverEffects() {
-      document.querySelectorAll('.fa-icon, .panda-emoji, .nav-icon, .social-icon').forEach(item => {
-        item.addEventListener('mouseenter', () => {
-          if (!item.classList.contains('panda-spin')) {
-            item.style.transform = 'scale(1.3)';
-          }
-          item.style.color = 'var(--panda-white)';
-          item.style.background = 'var(--coral-pink)';
-          pandaPulseEffect(item);
-        });
-        item.addEventListener('mouseleave', () => {
-          if (!item.classList.contains('panda-spin')) {
-            item.style.transform = 'scale(1)';
-          }
-          item.style.color = 'var(--panda-black)';
-          item.style.background = 'var(--panda-white)';
-        });
-        item.addEventListener('touchstart', () => {
-          if (!item.classList.contains('panda-spin')) {
-            item.style.transform = 'scale(1.3)';
-          }
-          item.style.color = 'var(--panda-white)';
-          item.style.background = 'var(--coral-pink)';
-          pandaPulseEffect(item);
-        });
-      });
-    }
-
+    // Scroll reveal animation
     function initScrollReveal() {
-      window.addEventListener('scroll', () => {
-        const elements = document.querySelectorAll('.fade-in');
-        elements.forEach(el => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.8) {
-            el.classList.add('visible');
-            pandaLog('Element revealed: ' + el.tagName);
-            pandaBounceEffect(el);
-          } else {
-            el.classList.remove('visible');
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            log('Element revealed: ' + entry.target.tagName);
           }
         });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
       });
     }
 
-    function initButtonConfetti() {
-      document.querySelectorAll('.panda-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          pandaLog('Button clicked, confetti time!');
-          const confetti = createPandaConfetti(20);
-          confetti.forEach(c => pandaLog(c));
-          pandaPulseEffect(btn);
+    // Add bounce effect to panda emojis on click
+    function initPandaInteractions() {
+      document.querySelectorAll('.panda-float').forEach(panda => {
+        panda.addEventListener('click', () => {
+          panda.classList.add('panda-bounce');
+          setTimeout(() => {
+            panda.classList.remove('panda-bounce');
+          }, 1000);
         });
       });
     }
 
+    // Initialize Jupiter Terminal
     function initJupiterTerminal() {
       const terminalContainer = document.getElementById('integrated-terminal');
       if (!terminalContainer) {
-        pandaLog('Jupiter Terminal container not found!');
+        log('Jupiter Terminal container not found!');
         return;
       }
 
@@ -959,33 +922,122 @@
           },
           theme: {
             colors: {
-              primary: "var(--bamboo-green)",
-              secondary: "var(--coral-pink)",
-              background: "var(--panda-white)",
-              text: "var(--panda-black)",
-              accent: "var(--glow-soft)",
+              primary: "#00ffff",
+              secondary: "#8b5cf6",
+              background: "#1a1a1f",
+              text: "#ffffff",
+              accent: "#ec4899",
             },
-            fontFamily: "'Poppins', sans-serif",
+            fontFamily: "'Inter', sans-serif",
           },
         });
-        pandaLog('Jupiter Terminal initialized successfully!');
-        pandaBounceEffect(terminalContainer);
+        log('Jupiter Terminal initialized successfully!');
       } catch (err) {
-        pandaLog('Failed to initialize Jupiter Terminal: ' + err);
-        alert('Failed to load swap interface: ' + err.message);
+        log('Failed to initialize Jupiter Terminal: ' + err);
+        console.error('Jupiter Terminal Error:', err);
       }
     }
 
-    function initPandaFun() {
-      initSmoothScroll();
-      initHoverEffects();
-      initScrollReveal();
-      initButtonConfetti();
-      initJupiterTerminal();
-      pandaLog('PandaFun initialized!');
+    // Add hover effects to interactive elements
+    function initHoverEffects() {
+      // Add subtle glow effect to cards on hover
+      document.querySelectorAll('.glass-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-5px)';
+          card.style.boxShadow = 'var(--shadow-glow)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0)';
+          card.style.boxShadow = 'var(--shadow-soft)';
+        });
+      });
+
+      // Add click effects to buttons
+      document.querySelectorAll('.cyber-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            btn.style.transform = 'scale(1.05)';
+          }, 100);
+        });
+      });
     }
 
+    // Initialize parallax effect for floating elements
+    function initParallax() {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        
+        document.querySelectorAll('.floating-panda').forEach((element, index) => {
+          const speed = (index + 1) * 0.3;
+          element.style.transform = `translateY(${rate * speed}px)`;
+        });
+      });
+    }
+
+    // Add random sparkle effects
+    function createSparkles() {
+      const sparkleCount = 5;
+      for (let i = 0; i < sparkleCount; i++) {
+        setTimeout(() => {
+          const sparkle = document.createElement('div');
+          sparkle.innerHTML = '✨';
+          sparkle.style.position = 'fixed';
+          sparkle.style.left = Math.random() * window.innerWidth + 'px';
+          sparkle.style.top = Math.random() * window.innerHeight + 'px';
+          sparkle.style.fontSize = '1rem';
+          sparkle.style.pointerEvents = 'none';
+          sparkle.style.zIndex = '1000';
+          sparkle.style.animation = 'sparkle 2s ease-out forwards';
+          
+          document.body.appendChild(sparkle);
+          
+          setTimeout(() => {
+            sparkle.remove();
+          }, 2000);
+        }, i * 500);
+      }
+    }
+
+    // Add sparkle animation CSS
+    const sparkleStyle = document.createElement('style');
+    sparkleStyle.textContent = `
+      @keyframes sparkle {
+        0% { opacity: 0; transform: scale(0) rotate(0deg); }
+        50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        100% { opacity: 0; transform: scale(0) rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(sparkleStyle);
+
+    // Initialize everything when DOM is loaded
+    function initPandaFun() {
+      log('Initializing futuristic PandaFun...');
+      
+      initSmoothScroll();
+      initScrollReveal();
+      initPandaInteractions();
+      initHoverEffects();
+      initParallax();
+      
+      // Initialize Jupiter Terminal after a short delay
+      setTimeout(initJupiterTerminal, 1000);
+      
+      // Create sparkles periodically
+      setInterval(createSparkles, 10000);
+      
+      log('PandaFun initialized successfully!');
+    }
+
+    // Start everything when the page loads
     document.addEventListener('DOMContentLoaded', initPandaFun);
+
+    // Handle window resize for responsive behavior
+    window.addEventListener('resize', () => {
+      log('Window resized, adjusting layout...');
+    });
   </script>
 </body>
 
